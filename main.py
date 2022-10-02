@@ -74,44 +74,6 @@ def main():
 
         # Call the Calendar API
         now = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
-
-        # = = =  = = =  = = =  = = =  = = =  = = = 
-        req = request.get_json(force=True)
-        print(json.dumps(req, indent=4))
-
-        year = req.get('sessionInfo').get('parameters').get('date').get('year')
-        month = req.get('sessionInfo').get('parameters').get('date').get('month')
-        day = req.get('sessionInfo').get('parameters').get('date').get('day')
-
-        hours = req.get('sessionInfo').get('parameters').get('time').get('hours')
-        minutes = req.get('sessionInfo').get('parameters').get('time').get('minutes')
-
-        summary = req.get('sessionInfo').get('parameters').get('summary')
-        location = req.get('sessionInfo').get('parameters').get('location')
-
-        print("DATE TIME PARAMETER:", year, month, day, hours, minutes, "summary: ", summary, "location: ",  location)
-        #DATE TIME PARAMETERS: 2022.0 9.0 24.0 17.0 0.0
-
-        dt_parameter = str(int(year)) + "," + str(int(month)) + "," + str(int(day)) + "," + str(int(hours)) + "," + str(int(minutes))
-        print('DATE TIME PARAMETERS: ',dt_parameter)
-
-        dt_str_date = datetime.datetime.strptime(dt_parameter, '%Y,%m,%d,%H,%M')
-        #2022-09-25 00:00:00
-
-        d = datetime.datetime.now().date()
-        today = datetime.datetime(d.year, d.month, d.day, 10)+datetime.timedelta(hours=1)
-        #2022-09-25 11:00:00
-        #start = today.isoformat("T", "seconds")
-
-        #start_parameter = datetime.datetime(2022, 9, 25, 12, 30, 0)
-
-        start_parameter = dt_str_date
-
-        start = start_parameter.isoformat("T", "seconds")
-
-        #end = (today + datetime.timedelta(hours=1)).isoformat("T", "seconds")
-        end = (start_parameter + datetime.timedelta(hours=1)).isoformat("T", "seconds")
-        # = = =  = = =  = = =  = = =  = = =  = = = 
         print('Getting the upcoming 10 events')
         events_result = service.events().list(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com', timeMin=now,
                                               maxResults=10, singleEvents=True,
@@ -119,17 +81,17 @@ def main():
         events = events_result.get('items', [])
 
         if not events:
-            #print('No upcoming events found.')
-            #return
-            start_event = "a ... napon nincs esemény"
+            print('No upcoming events found.')
+            return
 
         # Prints the start and name of the next 10 events
-        else:
-            start_event = "" 
-            for event in events:
-                start = event['start'].get('dateTime', event['start'].get('date'))
-                #print(start, event['summary'])
-                start_event += event['summary'] + " | " + start + " | "
+        start_event = "" 
+        for event in events:
+            start = event['start'].get('dateTime', event['start'].get('date'))
+            #print(start, event['summary'])
+            #start_event += start_event + " | " + event['summary'] + " | " + start
+            start_event += event['summary'] + " "  + start + " | "
+            #return event['summary']
 
         return start_event
 
