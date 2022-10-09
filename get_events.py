@@ -75,6 +75,8 @@ def main():
         # Call the Calendar API
         now = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
         print('Getting the upcoming 10 events')
+        print('timeMin timeMin timeMin = ')
+        print('timeMin')
         events_result = service.events().list(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com', timeMin=now,
                                               maxResults=10, singleEvents=True,
                                               orderBy='startTime').execute()
