@@ -77,7 +77,7 @@ def webhook():
 # id = r0evkror5p88vkhf3q842jk8fg@group.calendar.google.com
 
 def main():
-    try:
+#    try:
         service = build('calendar', 'v3', credentials=authentication())
 
         # Call the Calendar API
