@@ -73,34 +73,42 @@ def webhook():
     return res
 
 
-# id = 61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com
-# id = r0evkror5p88vkhf3q842jk8fg@group.calendar.google.com
-
 def main():
-#    try:
     service = build('calendar', 'v3', credentials=authentication())
 
-        # Call the Calendar API
     now = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
-        # now = 2022-10-09T05:53:52.400939Z
 
-    # This code is to fetch the calendar ids shared with me
-    # Src: https://developers.google.com/google-apps/calendar/v3/reference/calendarList/list
-    page_token = None
-    calendar_ids = []
-    while True:
-        calendar_list = service.calendarList().list(pageToken=page_token).execute()
-        for calendar_list_entry in calendar_list['items']:
-            if '61u5' in calendar_list_entry['id']:
-                calendar_ids.append(calendar_list_entry['id'])
-        page_token = calendar_list.get('nextPageToken')
-        if not page_token:
-            break
+
+    #calendar_ids = ['61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com','r0evkror5p88vkhf3q842jk8fg@group.calendar.google.com']
+    #calendar_ids = []
+
+    try:
+        page_token = None
+        while True:
+            calendar_list = service.calendarList().list(pageToken=page_token).execute()
+            for calendar_list_entry in calendar_list["items"]:
+                print(calendar_list_entry["summary"])
+            page_token = calendar_list.get("nextPageToken")
+            if not page_token:
+                break
+
+    except client.AccessTokenRefreshError:
+        print(
+            "The credentials have been revoked or expired, please re-run"
+            "the application to re-authorize."
+        )
 
 
     start_date = datetime.datetime(2022, 10, 12, 8, 00, 00, 0).isoformat() + 'Z'
     end_date = datetime.datetime(2022, 10, 15, 8, 00, 00, 0).isoformat() + 'Z'
 
+
+
+if __name__ == "__main__":
+
+    app.run()
+
+"""
 for calendar_id in calendar_ids:
     count = 0
     print('\n----%s:\n' % calendar_id)
@@ -121,12 +129,9 @@ for calendar_id in calendar_ids:
                     'dateTime', event['start'].get('date'))
                 print(start, event['summary'])
     print('Total days off for %s is %d' % (calendar_id, count))
-
+"""
     # start = event['start'].get('dateTime', event['start'].get('date'))
     # print(start, event['summary'])
     # start_event += start_event + " | " + event['summary'] + " | " + start
     # start_event += event['summary'] + " "  + start + " | "
     # return event['summary']
-
-if __name__ == "__main__":
-    app.run()
