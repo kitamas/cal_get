@@ -102,6 +102,10 @@ def main():
     start_date = datetime.datetime(2022, 10, 12, 8, 00, 00, 0).isoformat() + 'Z'
     end_date = datetime.datetime(2022, 10, 15, 8, 00, 00, 0).isoformat() + 'Z'
 
+    start_event = "AA" 
+
+    return start_event
+
 
 
 if __name__ == "__main__":
