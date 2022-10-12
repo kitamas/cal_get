@@ -78,10 +78,10 @@ def webhook():
 
 def main():
 #    try:
-        service = build('calendar', 'v3', credentials=authentication())
+    service = build('calendar', 'v3', credentials=authentication())
 
         # Call the Calendar API
-        now = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
+    now = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
         # now = 2022-10-09T05:53:52.400939Z
 
     # This code is to fetch the calendar ids shared with me
