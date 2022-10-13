@@ -63,7 +63,7 @@ def authentication():
 @app.route('/webhook', methods=['GET', 'POST'])
 def webhook():
     req = request.get_json(force=True)
-    print(req)
+    # print(req)
     # text = "webhook flask text response"
     text = main()
 
@@ -83,6 +83,7 @@ def main():
         page_token = None
         #calendar_ids = ['61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com','r0evkror5p88vkhf3q842jk8fg@group.calendar.google.com']
         calendar_ids = []
+        print("AAAAAAAAA",calendar_list_entry["summary"])
         while True:
             calendar_list = service.calendarList().list(pageToken=page_token).execute()
             for calendar_list_entry in calendar_list["items"]:
