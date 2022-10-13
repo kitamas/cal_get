@@ -93,13 +93,13 @@ def main():
             page_token = calendar_list.get("nextPageToken")
             if not page_token:
                 break
-
+"""
     except client.AccessTokenRefreshError:
         print(
             "The credentials have been revoked or expired, please re-run"
             "the application to re-authorize."
         )
-
+"""
 
     start_date = datetime.datetime(2022, 10, 12, 8, 00, 00, 0).isoformat() + 'Z'
     end_date = datetime.datetime(2022, 10, 15, 8, 00, 00, 0).isoformat() + 'Z'
