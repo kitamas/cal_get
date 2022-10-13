@@ -89,7 +89,7 @@ def main():
         calendar_list = service.calendarList().list(pageToken=page_token).execute(http=decorator.http())
         for calendar_list_entry in calendar_list["items"]:
             print("BBBBBB")
-            print calendar_list_entry['summary']
+            print(calendar_list_entry['summary'])
 
         page_token = calendar_list.get("nextPageToken")
         if not page_token:
