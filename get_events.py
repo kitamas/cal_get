@@ -81,20 +81,20 @@ def main():
 
     # try:
     page_token = None
-    calendar_ids = ['61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com','r0evkror5p88vkhf3q842jk8fg@group.calendar.google.com']
-    # calendar_ids = []
+    #calendar_ids = ['61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com','r0evkror5p88vkhf3q842jk8fg@group.calendar.google.com']
+    calendar_ids = []
     print("AAAAAAAAA")
     while True:
         calendar_list = service.calendarList().list(pageToken=page_token).execute()
         for calendar_list_entry in calendar_list["items"]:
-            print("BBBBBB", calendar_list_entry["summary"])
+            print("BBBBBB")
         page_token = calendar_list.get("nextPageToken")
         if not page_token:
             break
 
 
     start_date = datetime.datetime(2022, 10, 12, 8, 00, 00, 0).isoformat() + 'Z'
-    end_date = datetime.datetime(2022, 10, 15, 8, 00, 00, 0).isoformat() + 'Z'
+    end_date = datetime.datetime(2022, 10, 18, 8, 00, 00, 0).isoformat() + 'Z'
 
     start_event = "AA"
 
