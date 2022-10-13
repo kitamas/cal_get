@@ -78,11 +78,11 @@ def main():
 
     now = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
 
-    #calendar_ids = ['61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com','r0evkror5p88vkhf3q842jk8fg@group.calendar.google.com']
-    #calendar_ids = []
 
     try:
         page_token = None
+        #calendar_ids = ['61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com','r0evkror5p88vkhf3q842jk8fg@group.calendar.google.com']
+        calendar_ids = []
         while True:
             calendar_list = service.calendarList().list(pageToken=page_token).execute()
             for calendar_list_entry in calendar_list["items"]:
