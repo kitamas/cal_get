@@ -116,6 +116,7 @@ def main():
     while True:
         calendar_list = service.calendarList().list(pageToken=page_token).execute()
         for calendar_list_entry in calendar_list['items']:
+        print("FOR LIST",calendar_list_entry['id'])
             if '.com' in calendar_list_entry['id']:
                 calendar_ids.append(calendar_list_entry['id'])
         page_token = calendar_list.get('nextPageToken')
