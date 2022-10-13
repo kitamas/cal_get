@@ -83,6 +83,17 @@ def main():
 
     created_calendar_list_entry = service.calendarList().insert(body=calendar_list_entry).execute()
 
+    print("created_calendar_list_entry",created_calendar_list_entry)
+
+    response = service.calendarList().list(
+        maxResults=10,
+        showDeleted=False,
+        showHidden=False,
+    ).execute()
+
+    print("RESPONSE = ", response)
+    print("RESPONSE ITEMS = ", response.get('items'))
+
     # This code is to fetch the calendar ids shared with me
     # Src: https://developers.google.com/google-apps/calendar/v3/reference/calendarList/list
     page_token = None
