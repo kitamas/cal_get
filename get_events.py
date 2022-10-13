@@ -78,7 +78,6 @@ def main():
 
     now = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
 
-
     # try:
     page_token = None
     #calendar_ids = ['61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com','r0evkror5p88vkhf3q842jk8fg@group.calendar.google.com']
@@ -92,7 +91,7 @@ def main():
             print(calendar_list_entry['summary'])
             print(calendar_list_entry['id'])
             if "app" in calendar_list_entry['id']:
-                # print(calendar_list_entry['id'])
+                print(calendar_list_entry['id'])
                 calendar_ids.append(calendar_list_entry['id'])
         page_token = calendar_list.get("nextPageToken")
         if not page_token:
@@ -109,30 +108,4 @@ def main():
 if __name__ == "__main__":
     app.run()
 
-"""
-for calendar_id in calendar_ids:
-    count = 0
-    print('\n----%s:\n' % calendar_id)
-    eventsResult = service.events().list(
-        calendarId=calendar_id,
-        timeMin=start_date,
-        timeMax=end_date,
-        singleEvents=True,
-        orderBy='startTime').execute()
-    events = eventsResult.get('items', [])
-    if not events:
-        print('No upcoming events found.')
-    for event in events:
-        if event.has_key('summary'):
-            if 'PTO' in event['summary']:
-                count += 1
-                start = event['start'].get(
-                    'dateTime', event['start'].get('date'))
-                print(start, event['summary'])
-    print('Total days off for %s is %d' % (calendar_id, count))
-"""
-# start = event['start'].get('dateTime', event['start'].get('date'))
-# print(start, event['summary'])
-# start_event += start_event + " | " + event['summary'] + " | " + start
-# start_event += event['summary'] + " "  + start + " | "
-# return event['summary']
+
