@@ -79,31 +79,28 @@ def main():
     now = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
 
 
-    try:
-        page_token = None
-        #calendar_ids = ['61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com','r0evkror5p88vkhf3q842jk8fg@group.calendar.google.com']
-        #calendar_ids = []
-        print("AAAAAAAAA")
-        while True:
-            calendar_list = service.calendarList().list(pageToken=page_token).execute()
-            for calendar_list_entry in calendar_list["items"]:
-                print("AAAAAAAAA",calendar_list_entry["summary"])
-            page_token = calendar_list.get("nextPageToken")
-            if not page_token:
-                break
+    # try:
+    page_token = None
+    # calendar_ids = ['61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com','r0evkror5p88vkhf3q842jk8fg@group.calendar.google.com']
+    # calendar_ids = []
+    print("AAAAAAAAA")
+    while True:
+        calendar_list = service.calendarList().list(pageToken=page_token).execute()
+        for calendar_list_entry in calendar_list["items"]:
+            print("AAAAAAAAA", calendar_list_entry["summary"])
+        page_token = calendar_list.get("nextPageToken")
+        if not page_token:
+            break
 
 
-    start_date = datetime.datetime(2022, 10, 12, 8, 00, 00, 0).isoformat() + 'Z'
-    end_date = datetime.datetime(2022, 10, 15, 8, 00, 00, 0).isoformat() + 'Z'
+start_date = datetime.datetime(2022, 10, 12, 8, 00, 00, 0).isoformat() + 'Z'
+end_date = datetime.datetime(2022, 10, 15, 8, 00, 00, 0).isoformat() + 'Z'
 
-    start_event = "AA" 
+start_event = "AA"
 
-    return start_event
-
-
+return start_event
 
 if __name__ == "__main__":
-
     app.run()
 
 """
@@ -128,8 +125,8 @@ for calendar_id in calendar_ids:
                 print(start, event['summary'])
     print('Total days off for %s is %d' % (calendar_id, count))
 """
-    # start = event['start'].get('dateTime', event['start'].get('date'))
-    # print(start, event['summary'])
-    # start_event += start_event + " | " + event['summary'] + " | " + start
-    # start_event += event['summary'] + " "  + start + " | "
-    # return event['summary']
+# start = event['start'].get('dateTime', event['start'].get('date'))
+# print(start, event['summary'])
+# start_event += start_event + " | " + event['summary'] + " | " + start
+# start_event += event['summary'] + " "  + start + " | "
+# return event['summary']
