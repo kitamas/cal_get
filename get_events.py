@@ -88,9 +88,9 @@ def main():
         showHidden=False,
     ).execute()
 
-    print("RESPONSE", response)
-    print(response.keys())
-    print("RESPONSE ITEMS", response.get('items'))
+    print("RESPONSE = ", response)
+    print("RESPONSE KEYS = ", response.keys())
+    print("RESPONSE ITEMS = ", response.get('items'))
 
 
     calendarItems = response.get('items')
@@ -107,7 +107,7 @@ def main():
     calendarItems.extend(response.get('items'))
     nextPageToken = response.get('nextPageToken')
 
-    print(calendarItems)
+    print("calendarItems = ",calendarItems)
 
     start_event = "AA"
 
