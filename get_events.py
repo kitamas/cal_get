@@ -59,13 +59,6 @@ def authentication():
     )
     return creds
 
-
-# https://developers.google.com/calendar/api/v3/reference/calendarList/list
-# If you want to list the calendars that have been shared with a service account (via CalendarList: list), you should first insert the corresponding calendars individually via CalendarList: insert.
-# https://developers.google.com/calendar/api/v3/reference/calendarList/insert
-
-
-
 @app.route('/webhook', methods=['GET', 'POST'])
 def webhook():
     req = request.get_json(force=True)
@@ -84,14 +77,16 @@ def main():
 
     now = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
 
+    # https://developers.google.com/calendar/api/v3/reference/calendarList/list
+    # If you want to list the calendars that have been shared with a service account (via CalendarList: list), you should first insert the corresponding calendars individually via CalendarList: insert.
+    # https://developers.google.com/calendar/api/v3/reference/calendarList/insert
+
     calendar_list_entry = {'id': '61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com'}
 
     #calendar_ids = ['61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com','r0evkror5p88vkhf3q842jk8fg@group.calendar.google.com']
     #calendar_ids = []
 
     created_calendar_list_entry = service.calendarList().insert(body=calendar_list_entry).execute()
-
-    print(created_calendar_list_entry['summary'])
 
     response = service.calendarList().list(
         maxResults=10,
@@ -100,9 +95,7 @@ def main():
     ).execute()
 
     print("RESPONSE = ", response)
-    print("RESPONSE KEYS = ", response.keys())
     print("RESPONSE ITEMS = ", response.get('items'))
-
 
     calendarItems = response.get('items')
     nextPageToken = response.get('nextPageToken')
@@ -118,7 +111,7 @@ def main():
     calendarItems.extend(response.get('items'))
     nextPageToken = response.get('nextPageToken')
 
-    print("calendarItems = ",calendarItems)
+    print("CALENDAR ITEMS = ",calendarItems)
 
     start_event = "AA"
 
