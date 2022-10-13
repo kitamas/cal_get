@@ -94,7 +94,7 @@ def main():
     # Src: https://developers.google.com/google-apps/calendar/v3/reference/events/list
     # You need to get this from command line
     # Bother about it later!
-    start_date = datetime.datetime(2022, 10, 01, 00, 00, 00, 0).isoformat() + 'Z'
+    start_date = datetime.datetime(2022, 10, 1, 0, 0, 0, 0).isoformat() + 'Z'
     end_date = datetime.datetime(2022, 12, 30, 23, 59, 59, 0).isoformat() + 'Z'
  
     for calendar_id in calendar_ids:
