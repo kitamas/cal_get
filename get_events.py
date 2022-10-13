@@ -82,24 +82,16 @@ def main():
     try:
         page_token = None
         #calendar_ids = ['61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com','r0evkror5p88vkhf3q842jk8fg@group.calendar.google.com']
-        calendar_ids = []
-        print("AAAAAAAAA",calendar_list_entry["summary"])
+        #calendar_ids = []
+        print("AAAAAAAAA")
         while True:
             calendar_list = service.calendarList().list(pageToken=page_token).execute()
             for calendar_list_entry in calendar_list["items"]:
                 print("AAAAAAAAA",calendar_list_entry["summary"])
-                if '61u5i' in calendar_list_entry['id']:
-                    calendar_ids.append(calendar_list_entry['id'])
             page_token = calendar_list.get("nextPageToken")
             if not page_token:
                 break
-"""
-    except client.AccessTokenRefreshError:
-        print(
-            "The credentials have been revoked or expired, please re-run"
-            "the application to re-authorize."
-        )
-"""
+
 
     start_date = datetime.datetime(2022, 10, 12, 8, 00, 00, 0).isoformat() + 'Z'
     end_date = datetime.datetime(2022, 10, 15, 8, 00, 00, 0).isoformat() + 'Z'
