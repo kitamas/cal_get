@@ -125,14 +125,7 @@ def main():
         events = eventsResult.get('items', [])
         if not events:
             print('No upcoming events found.')
-        for event in events:
-            if event.has_key('summary'):
-                if 'PTO' in event['summary']:
-                    count += 1
-                    start = event['start'].get(
-                        'dateTime', event['start'].get('date'))
-                    print(start, event['summary'])
-        print('Total days off for %s is %d' % (calendar_id, count))
+
  
 
 
