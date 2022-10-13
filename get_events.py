@@ -60,6 +60,10 @@ def authentication():
     return creds
 
 
+# https://developers.google.com/calendar/api/v3/reference/calendarList/list
+# If you want to list the calendars that have been shared with a service account (via CalendarList: list), you should first insert the corresponding calendars individually via CalendarList: insert.
+# https://developers.google.com/calendar/api/v3/reference/calendarList/insert
+
 @app.route('/webhook', methods=['GET', 'POST'])
 def webhook():
     req = request.get_json(force=True)
@@ -77,34 +81,33 @@ def main():
     service = build('calendar', 'v3', credentials=authentication())
 
     now = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
-    response = service.calendarList().list().execute()
+
+    response = service.calendarList().list(
+        maxResults=10,
+        showDeleted=False,
+        showHidden=False,
+    ).execute()
+
     print("RESPONSE", response)
     print(response.keys())
-    print("RESPONSE ITEMS",response.get('items'))
+    print("RESPONSE ITEMS", response.get('items'))
 
-    # try:
-    page_token = None
-    #calendar_ids = ['61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com','r0evkror5p88vkhf3q842jk8fg@group.calendar.google.com']
-    calendar_ids = []
 
-    while True:
+    calendarItems = response.get('items')
+    nextPageToken = response.get('nextPageToken')
 
-        calendar_list = service.calendarList().list(pageToken=page_token).execute()
-        #calendar_list = service.calendarList().list(pageToken=page_token).execute(http=decorator.http())
-        for calendar_list_entry in calendar_list['items']:
-            print("BBBBBB")
-            print(calendar_list_entry['summary'])
-            print(calendar_list_entry['id'])
-            if "app" in calendar_list_entry['id']:
-                print(calendar_list_entry['id'])
-                calendar_ids.append(calendar_list_entry['id'])
-        page_token = calendar_list.get("nextPageToken")
-        if not page_token:
-            break
-    print("calendar_ids",calendar_ids)
+    while nextPageToken:
+        response = service.calendarList().list(
+            maxResults=10,
+            showDeleted=False,
+            showHidden=False,
+            pageToken=nextPageToken
+        ).execute()
 
-    #start_date = datetime.datetime(2022, 10, 12, 8, 00, 00, 0).isoformat() + 'Z'
-    #end_date = datetime.datetime(2022, 10, 18, 8, 00, 00, 0).isoformat() + 'Z'
+    calendarItems = extend.response.get('items')
+    nextPageToken = response.get('nextPageToken')
+
+    print(calendarItems)
 
     start_event = "AA"
 
@@ -112,5 +115,3 @@ def main():
 
 if __name__ == "__main__":
     app.run()
-
-
