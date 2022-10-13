@@ -92,7 +92,7 @@ def main():
                 break
 
 
-        start_date = datetime.datetime(2022, 10, 30, 0, 0, 0, 0).isoformat() + 'Z'
+        start_date = datetime.datetime(2022, 10, 12, 0, 0, 0, 0).isoformat() + 'Z'
         end_date = datetime.datetime(2022, 12, 1, 23, 59, 59, 0).isoformat() + 'Z'
 
         for calendar_id in calendar_ids:
