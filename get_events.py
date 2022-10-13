@@ -77,54 +77,25 @@ def main():
 
     now = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
 
-    # https://developers.google.com/calendar/api/v3/reference/calendarList/list
-    # If you want to list the calendars that have been shared with a service account (via CalendarList: list), you should first insert the corresponding calendars individually via CalendarList: insert.
-    # https://developers.google.com/calendar/api/v3/reference/calendarList/insert
-
-    calendar_list_entry = {'id': '61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com'}
-
-    #calendar_ids = ['61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com','r0evkror5p88vkhf3q842jk8fg@group.calendar.google.com']
-
-    created_calendar_list_entry = service.calendarList().insert(body=calendar_list_entry).execute()
-
-    response = service.calendarList().list(
-        maxResults=10,
-        showDeleted=False,
-        showHidden=False,
-    ).execute()
-
-    print("RESPONSE = ", response)
-    print("RESPONSE ITEMS = ", response.get('items'))
-
-    calendarItems = response.get('items')
-    nextPageToken = response.get('nextPageToken')
-
-    while nextPageToken:
-        response = service.calendarList().list(
-            maxResults=10,
-            showDeleted=False,
-            showHidden=False,
-            pageToken=nextPageToken
-        ).execute()
-
-    calendarItems.extend(response.get('items'))
-    nextPageToken = response.get('nextPageToken')
-
+    # This code is to fetch the calendar ids shared with me
+    # Src: https://developers.google.com/google-apps/calendar/v3/reference/calendarList/list
     page_token = None
     calendar_ids = []
     while True:
         calendar_list = service.calendarList().list(pageToken=page_token).execute()
         for calendar_list_entry in calendar_list['items']:
-            print("FOR LIST",calendar_list_entry['id'])
-            if '.com' in calendar_list_entry['id']:
+            if '@qxf2.com' in calendar_list_entry['id']:
                 calendar_ids.append(calendar_list_entry['id'])
         page_token = calendar_list.get('nextPageToken')
         if not page_token:
             break
-
-
-    start_date = datetime.datetime(2022, 10, 13, 00, 00, 00, 0).isoformat() + 'Z'
-    end_date = datetime.datetime(2022, 10, 30, 23, 59, 59, 0).isoformat() + 'Z'
+ 
+    # This code is to look for all-day events in each calendar for the month of September
+    # Src: https://developers.google.com/google-apps/calendar/v3/reference/events/list
+    # You need to get this from command line
+    # Bother about it later!
+    start_date = datetime.datetime(2022, 10, 01, 00, 00, 00, 0).isoformat() + 'Z'
+    end_date = datetime.datetime(2022, 12, 30, 23, 59, 59, 0).isoformat() + 'Z'
  
     for calendar_id in calendar_ids:
         count = 0
@@ -146,13 +117,8 @@ def main():
                         'dateTime', event['start'].get('date'))
                     print(start, event['summary'])
         print('Total days off for %s is %d' % (calendar_id, count))
+ 
 
-
-
-
-
-
-    print("CALENDAR ITEMS = ",calendarItems)
 
     start_event = "AA"
 
