@@ -89,6 +89,7 @@ def main():
     calendar_ids = []
     while True:
         calendar_list = service.calendarList().list(pageToken=page_token).execute()
+        print("WHILE WHILE")
         for calendar_list_entry in calendar_list['items']:
             if '@qxf2.com' in calendar_list_entry['id']:
                 calendar_ids.append(calendar_list_entry['id'])
@@ -100,6 +101,7 @@ def main():
     end_date = datetime.datetime(2022, 12, 30, 23, 59, 59, 0).isoformat() + 'Z'
  
     for calendar_id in calendar_ids:
+        print("FOR FOR")
         count = 0
         print('\n----%s:\n' % calendar_id)
         eventsResult = service.events().list(
