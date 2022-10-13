@@ -79,7 +79,9 @@ def main():
     now = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
     response = service.calendarList().list().execute()
     print("RESPONSE", response)
-
+    print(response.keys())
+    print(response.get('items'))
+    print(response.get('items')[0])
     # try:
     page_token = None
     #calendar_ids = ['61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com','r0evkror5p88vkhf3q842jk8fg@group.calendar.google.com']
