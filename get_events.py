@@ -104,7 +104,7 @@ def main():
             pageToken=nextPageToken
         ).execute()
 
-    calendarItems = extend.response.get('items')
+    calendarItems.extend.response.get('items')
     nextPageToken = response.get('nextPageToken')
 
     print(calendarItems)
