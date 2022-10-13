@@ -128,8 +128,8 @@ def main():
 
  
 
-
-    start_event = "AA"
+    print("EVENTS",events)
+    start_event = events
 
     return start_event
 
