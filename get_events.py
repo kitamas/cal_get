@@ -101,7 +101,7 @@ def main():
     calendar_ids = []
     while True:
         calendar_list = service.calendarList().list(pageToken=page_token).execute()
-        print("WHILE WHILE")
+        print("WHILE WHILE calendar_list",calendar_list)
         for calendar_list_entry in calendar_list['items']:
             if '@qxf2.com' in calendar_list_entry['id']:
                 calendar_ids.append(calendar_list_entry['id'])
