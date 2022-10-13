@@ -84,7 +84,6 @@ def main():
     calendar_list_entry = {'id': '61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com'}
 
     #calendar_ids = ['61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com','r0evkror5p88vkhf3q842jk8fg@group.calendar.google.com']
-    #calendar_ids = []
 
     created_calendar_list_entry = service.calendarList().insert(body=calendar_list_entry).execute()
 
@@ -122,6 +121,36 @@ def main():
         page_token = calendar_list.get('nextPageToken')
         if not page_token:
             break
+
+
+    start_date = datetime.datetime(2022, 10, 13, 00, 00, 00, 0).isoformat() + 'Z'
+    end_date = datetime.datetime(2022, 10, 30, 23, 59, 59, 0).isoformat() + 'Z'
+ 
+    for calendar_id in calendar_ids:
+        count = 0
+        print('\n----%s:\n' % calendar_id)
+        eventsResult = service.events().list(
+            calendarId=calendar_id,
+            timeMin=start_date,
+            timeMax=end_date,
+            singleEvents=True,
+            orderBy='startTime').execute()
+        events = eventsResult.get('items', [])
+        if not events:
+            print('No upcoming events found.')
+        for event in events:
+            if event.has_key('summary'):
+                if 'PTO' in event['summary']:
+                    count += 1
+                    start = event['start'].get(
+                        'dateTime', event['start'].get('date'))
+                    print(start, event['summary'])
+        print('Total days off for %s is %d' % (calendar_id, count))
+
+
+
+
+
 
     print("CALENDAR ITEMS = ",calendarItems)
 
