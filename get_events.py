@@ -111,6 +111,7 @@ def main():
     calendarItems.extend(response.get('items'))
     nextPageToken = response.get('nextPageToken')
 
+    page_token = None
     calendar_ids = []
     while True:
         calendar_list = service.calendarList().list(pageToken=page_token).execute()
