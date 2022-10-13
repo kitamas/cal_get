@@ -69,7 +69,7 @@ def webhook():
     return res
 
 def main():
-    #try:
+    try:
         service = build('calendar', 'v3', credentials=authentication())
 
         # Call the Calendar API
@@ -98,23 +98,31 @@ def main():
         for calendar_id in calendar_ids:
             count = 0
             print('\n----%s:\n' % calendar_id)
-            eventsResult = service.events().list(
+            events_result = service.events().list(
                 calendarId=calendar_id,
                 timeMin=start_date,
                 timeMax=end_date,
                 singleEvents=True,
                 orderBy='startTime').execute()
-            events = eventsResult.get('items', [])
+            events = events_result.get('items', [])
         if not events:
             print('No upcoming events found.')
+            return
+
+        # Prints the start and name of the next 10 events
+        start_event = "" 
         for event in events:
-            if event.has_key('summary'):
-                if 'PTO' in event['summary']:
-                    count += 1
-                    start = event['start'].get(
-                        'dateTime', event['start'].get('date'))
-                    print(start, event['summary'])
-        print('Total days off for %s is %d' % (calendar_id, count))
+            start = event['start'].get('dateTime', event['start'].get('date'))
+            #print(start, event['summary'])
+            #start_event += start_event + " | " + event['summary'] + " | " + start
+            start_event += event['summary'] + " "  + start + " | "
+            #return event['summary']
+
+        return start_event
+
+    except HttpError as error:
+        print('An error occurred: %s' % error)
+
 
 if __name__ == "__main__":
 
