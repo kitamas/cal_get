@@ -73,7 +73,7 @@ calendar_list_entry = {
 
 created_calendar_list_entry = service.calendarList().insert(body=calendar_list_entry).execute()
 
-print created_calendar_list_entry['summary']
+print(created_calendar_list_entry['summary'])
 
 @app.route('/webhook', methods=['GET', 'POST'])
 def webhook():
