@@ -103,7 +103,7 @@ def main():
         calendar_list = service.calendarList().list(pageToken=page_token).execute()
         print("WHILE WHILE calendar_list",calendar_list)
         for calendar_list_entry in calendar_list['items']:
-            if '@qxf2.com' in calendar_list_entry['id']:
+            if '61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com' in calendar_list_entry['id']:
                 calendar_ids.append(calendar_list_entry['id'])
         page_token = calendar_list.get('nextPageToken')
         if not page_token:
