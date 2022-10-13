@@ -69,7 +69,7 @@ def webhook():
     return res
 
 def main():
-    try:
+    #try:
         service = build('calendar', 'v3', credentials=authentication())
 
         # Call the Calendar API
@@ -86,14 +86,14 @@ def main():
             calendar_list = service.calendarList().list(pageToken=page_token).execute()
             for calendar_list_entry in calendar_list['items']:
                 if '@qxf2.com' in calendar_list_entry['id']:
-                calendar_ids.append(calendar_list_entry['id'])
+                    calendar_ids.append(calendar_list_entry['id'])
             page_token = calendar_list.get('nextPageToken')
             if not page_token:
                 break
 
 
         start_date = datetime.datetime(2022, 10, 30, 0, 0, 0, 0).isoformat() + 'Z'
-        end_date = datetime.datetime(2022, 12, 01, 23, 59, 59, 0).isoformat() + 'Z'
+        end_date = datetime.datetime(2022, 12, 1, 23, 59, 59, 0).isoformat() + 'Z'
 
         for calendar_id in calendar_ids:
             count = 0
