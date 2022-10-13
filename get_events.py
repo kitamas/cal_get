@@ -87,7 +87,7 @@ def main():
     while True:
         calendar_list = service.calendarList().list(pageToken=page_token).execute()
         #calendar_list = service.calendarList().list(pageToken=page_token).execute(http=decorator.http())
-        for calendar_list_entry in calendar_list["items"]:
+        for calendar_list_entry in calendar_list['items']:
             print("BBBBBB")
             print(calendar_list_entry['summary'])
             print(calendar_list_entry['id'])
@@ -97,7 +97,7 @@ def main():
         page_token = calendar_list.get("nextPageToken")
         if not page_token:
             break
-    print(calendar_ids)
+    print("calendar_ids",calendar_ids)
 
     #start_date = datetime.datetime(2022, 10, 12, 8, 00, 00, 0).isoformat() + 'Z'
     #end_date = datetime.datetime(2022, 10, 18, 8, 00, 00, 0).isoformat() + 'Z'
