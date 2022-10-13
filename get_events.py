@@ -77,8 +77,8 @@ def main():
         # now = 2022-10-09T05:53:52.400939Z
 
         #https://django.fun/en/qa/75644/
-        #calendar_ids = ['61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com']
-        calendar_ids = ['61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com','r0evkror5p88vkhf3q842jk8fg@group.calendar.google.com']
+        calendar_ids = ['61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com']
+        #calendar_ids = ['61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com','r0evkror5p88vkhf3q842jk8fg@group.calendar.google.com']
         print('Getting the upcoming 10 events')
 
         for calendar_id in calendar_ids:
