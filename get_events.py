@@ -77,6 +77,8 @@ def main():
     service = build('calendar', 'v3', credentials=authentication())
 
     now = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
+    response = service.calendarList().list().execute()
+    print("RESPONSE", response)
 
     # try:
     page_token = None
@@ -84,6 +86,7 @@ def main():
     calendar_ids = []
 
     while True:
+
         calendar_list = service.calendarList().list(pageToken=page_token).execute()
         #calendar_list = service.calendarList().list(pageToken=page_token).execute(http=decorator.http())
         for calendar_list_entry in calendar_list['items']:
