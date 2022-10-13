@@ -77,6 +77,12 @@ def main():
 
     now = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
 
+    calendar_list_entry = {'id': '61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com'}
+
+    #calendar_ids = ['61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com','r0evkror5p88vkhf3q842jk8fg@group.calendar.google.com']
+
+    created_calendar_list_entry = service.calendarList().insert(body=calendar_list_entry).execute()
+
     # This code is to fetch the calendar ids shared with me
     # Src: https://developers.google.com/google-apps/calendar/v3/reference/calendarList/list
     page_token = None
@@ -90,10 +96,6 @@ def main():
         if not page_token:
             break
  
-    # This code is to look for all-day events in each calendar for the month of September
-    # Src: https://developers.google.com/google-apps/calendar/v3/reference/events/list
-    # You need to get this from command line
-    # Bother about it later!
     start_date = datetime.datetime(2022, 10, 1, 0, 0, 0, 0).isoformat() + 'Z'
     end_date = datetime.datetime(2022, 12, 30, 23, 59, 59, 0).isoformat() + 'Z'
  
