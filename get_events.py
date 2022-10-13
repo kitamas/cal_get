@@ -84,6 +84,7 @@ def main():
     created_calendar_list_entry = service.calendarList().insert(body=calendar_list_entry).execute()
 
     print("created_calendar_list_entry",created_calendar_list_entry)
+    print("created_calendar_list_entry ID ID",created_calendar_list_entry['id'])
 
     response = service.calendarList().list(
         maxResults=10,
