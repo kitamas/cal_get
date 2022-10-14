@@ -115,16 +115,16 @@ def main():
             events = events_result.get('items', [])
          
             if calendar_id == '61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com':
-                start_event1 = "" 
+                start_event1 = "Cal1" 
                 for event in events:
                     start1 = event['start'].get('dateTime', event['start'].get('date'))
                     start_event1 += event['summary'] + " | " + start1 + " | "
 
 
-            start_event2 = "" 
+            start_event2 = "Cal2" 
             for event in events:
                 start2 = event['start'].get('dateTime', event['start'].get('date'))
-                start_event2 += event['summary'] + " | " + start2 + " | "
+                start_event2 += event['location'] + event['summary'] + " | " + start2 + " | "
 
 
         if not events:
