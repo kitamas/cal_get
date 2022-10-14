@@ -108,13 +108,15 @@ def main():
                 singleEvents=True,
                 orderBy='startTime').execute()
             events = events_result.get('items', [])
+            # tags from the calendar, for filtering
             # if "description" exists in the calendar: event['description']
+            # if "status":"confirmed",
 
             if calendar_id == '61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com':
                 events_cal1 = "CAL1: " 
                 for event in events:
                     time_cal1 = event['start'].get('dateTime', event['start'].get('date'))
-                    events_cal1 += event['description'] + event['summary'] + " | " + time_cal1 + " | "
+                    events_cal1 += event['summary'] + " | " + time_cal1 + " | "
 
 
             events_cal2 = "CAL2: " 
