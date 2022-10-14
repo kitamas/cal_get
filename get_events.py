@@ -114,11 +114,12 @@ def main():
                 orderBy='startTime').execute()
             events = events_result.get('items', [])
          
-            start_event1 = "" 
-            for event in events:
-                start1 = event['start'].get('dateTime', event['start'].get('date'))
-                start_event1 += start_event1 + " | " + event['summary'] + " | " + start1
-                print("START EVENT 111 = ",start_event1)
+            if calendar_id == '61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com':
+                start_event1 = "" 
+                for event in events:
+                    start1 = event['start'].get('dateTime', event['start'].get('date'))
+                    start_event1 += start_event1 + " | " + event['summary'] + " | " + start1
+                    print("START EVENT 111 = ",start_event1)
 
             start_event2 = "" 
             for event in events:
