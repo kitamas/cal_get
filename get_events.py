@@ -123,8 +123,9 @@ def main():
 
             start_event2 = "Cal2" 
             for event in events:
+                print(event)
                 start2 = event['start'].get('dateTime', event['start'].get('date'))
-                start_event2 += event['location'] + event['summary'] + " | " + start2 + " | "
+                start_event2 +=  event['summary'] + " | " + start2 + " | "
 
 
         if not events:
