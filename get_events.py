@@ -81,9 +81,9 @@ def main():
         # https://developers.google.com/calendar/api/v3/reference/calendarList/list
         # If you want to list the calendars that have been shared with a service account (via CalendarList: list), you should first insert the corresponding calendars individually via CalendarList: insert.
         # https://developers.google.com/calendar/api/v3/reference/calendarList/insert
-        calendar_list_entry = {'id': 'r0evkror5p88vkhf3q842jk8fg@group.calendar.google.com'}
-        created_calendar_list_entry = service.calendarList().insert(body=calendar_list_entry).execute()
-        print(created_calendar_list_entry['summary'])
+        # calendar_list_entry = {'id': 'r0evkror5p88vkhf3q842jk8fg@group.calendar.google.com'}
+        # created_calendar_list_entry = service.calendarList().insert(body=calendar_list_entry).execute()
+        # print(created_calendar_list_entry['summary'])
 
         #https://django.fun/en/qa/75644/
         #calendar_ids = ['61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com','r0evkror5p88vkhf3q842jk8fg@group.calendar.google.com']
@@ -99,14 +99,14 @@ def main():
             page_token = calendar_list.get('nextPageToken')
             if not page_token:
                 break
-        print("CALENDAR IDS = ",calendar_ids)
+        print("CALENDAR IDS 111 = ",calendar_ids)
 
         start_date = datetime.datetime(2022, 10, 14, 0, 0, 0, 0).isoformat() + 'Z'
         end_date = datetime.datetime(2022, 10, 29, 23, 59, 59, 0).isoformat() + 'Z'
 
         for calendar_id in calendar_ids:
             count = 0
-            print("CALENDAR IDS calendar_ids = ",calendar_ids)
+            print("CALENDAR IDS 222 = ",calendar_ids)
             events_result = service.events().list(
                 calendarId=calendar_id,
                 timeMin=start_date,
