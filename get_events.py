@@ -113,12 +113,19 @@ def main():
                 singleEvents=True,
                 orderBy='startTime').execute()
             events = events_result.get('items', [])
-            print("EVENTS =",events)            
-            start_event = "" 
+         
+            start_event1 = "" 
             for event in events:
-                start = event['start'].get('dateTime', event['start'].get('date'))
-                start_event += start_event + " | " + event['summary'] + " | " + start
-                print("START EVENT = ",start_event)
+                start1 = event['start'].get('dateTime', event['start'].get('date'))
+                start_event1 += start_event1 + " | " + event['summary'] + " | " + start
+                print("START EVENT 111 = ",start_event1)
+
+            start_event2 = "" 
+            for event in events:
+                start2 = event['start'].get('dateTime', event['start'].get('date'))
+                start_event2 += start_event2 + " | " + event['summary'] + " | " + start
+                print("START EVENT 222 = ",start_event2)
+
         if not events:
             print('No upcoming events found.')
             return
