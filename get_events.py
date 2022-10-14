@@ -59,7 +59,7 @@ def authentication():
 @app.route('/webhook', methods=['GET','POST'])
 def webhook():
     req = request.get_json(force=True)
-    print(req)
+    #print(req)
     #text = "webhook flask text response"
     text = main()
 
@@ -76,30 +76,63 @@ def main():
         now = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
         # now = 2022-10-09T05:53:52.400939Z
 
+        page_token = None
+
+        # https://developers.google.com/calendar/api/v3/reference/calendarList/list
+        # If you want to list the calendars that have been shared with a service account (via CalendarList: list), you should first insert the corresponding calendars individually via CalendarList: insert.
+        # https://developers.google.com/calendar/api/v3/reference/calendarList/insert
+        # calendar_list_entry = {'id': 'r0evkror5p88vkhf3q842jk8fg@group.calendar.google.com'}
+        # created_calendar_list_entry = service.calendarList().insert(body=calendar_list_entry).execute()
+        #calendar_ids = ['61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com','r0evkror5p88vkhf3q842jk8fg@group.calendar.google.com']
+
+        calendar_ids = []
         print('Getting the upcoming 10 events')
-        events_result = service.events().list(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com', timeMin=now,
-                                              maxResults=10, singleEvents=True,
-                                              orderBy='startTime').execute()
-        events = events_result.get('items', [])
+
+        while True:
+            calendar_list = service.calendarList().list(pageToken=page_token).execute()
+            for calendar_list_entry in calendar_list['items']:
+                if '@group.calendar.google.com' in calendar_list_entry['id']:
+                    calendar_ids.append(calendar_list_entry['id'])
+            page_token = calendar_list.get('nextPageToken')
+            if not page_token:
+                break
+
+        #start_date = datetime.datetime(2022, 10, 14, 0, 0, 0, 0).isoformat() + 'Z'
+        end_date = datetime.datetime(2022, 12, 31, 23, 59, 59, 0).isoformat() + 'Z'
+
+        for calendar_id in calendar_ids:
+            events_result = service.events().list(
+                calendarId=calendar_id,
+                #timeMin=start_date,
+                timeMin=now,
+                timeMax=end_date,
+                singleEvents=True,
+                orderBy='startTime').execute()
+            events = events_result.get('items', [])
+            # tags from the calendar, for filtering
+            # if "description" exists in the calendar: event['description']
+            # if "status":"confirmed",
+
+            if calendar_id == '61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com':
+                events_cal1 = "CAL1: " 
+                for event in events:
+                    time_cal1 = event['start'].get('dateTime', event['start'].get('date'))
+                    events_cal1 += event['summary'] + " | " + time_cal1 + " | "
+
+
+            events_cal2 = "CAL2: " 
+            for event in events:
+                time_cal2 = event['start'].get('dateTime', event['start'].get('date'))
+                events_cal2 +=  event['summary'] + " | " + time_cal2 + " | "
 
         if not events:
             print('No upcoming events found.')
             return
 
-        # Prints the start and name of the next 10 events
-        start_event = "" 
-        for event in events:
-            start = event['start'].get('dateTime', event['start'].get('date'))
-            #print(start, event['summary'])
-            #start_event += start_event + " | " + event['summary'] + " | " + start
-            start_event += event['summary'] + " "  + start + " | "
-            #return event['summary']
-
-        return start_event
+        return events_cal1 + events_cal2
 
     except HttpError as error:
         print('An error occurred: %s' % error)
-
 
 if __name__ == "__main__":
 
