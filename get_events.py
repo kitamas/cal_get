@@ -114,6 +114,7 @@ def main():
                 orderBy='startTime').execute()
             events = events_result.get('items', [])
          
+            event['description'] = ""
             if calendar_id == '61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com':
                 start_event1 = "CAL1: " 
                 for event in events:
