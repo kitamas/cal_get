@@ -83,9 +83,6 @@ def main():
         # https://developers.google.com/calendar/api/v3/reference/calendarList/insert
         # calendar_list_entry = {'id': 'r0evkror5p88vkhf3q842jk8fg@group.calendar.google.com'}
         # created_calendar_list_entry = service.calendarList().insert(body=calendar_list_entry).execute()
-        # print(created_calendar_list_entry['summary'])
-
-        #https://django.fun/en/qa/75644/
         #calendar_ids = ['61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com','r0evkror5p88vkhf3q842jk8fg@group.calendar.google.com']
 
         calendar_ids = []
@@ -104,8 +101,6 @@ def main():
         end_date = datetime.datetime(2022, 10, 29, 23, 59, 59, 0).isoformat() + 'Z'
 
         for calendar_id in calendar_ids:
-            count = 0
-
             events_result = service.events().list(
                 calendarId=calendar_id,
                 timeMin=start_date,
@@ -113,30 +108,28 @@ def main():
                 singleEvents=True,
                 orderBy='startTime').execute()
             events = events_result.get('items', [])
-         
-            event['description'] = ""
+            # if "description" exists in the calendar: event['description']
+
             if calendar_id == '61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com':
-                start_event1 = "CAL1: " 
+                events_cal1 = "CAL1: " 
                 for event in events:
-                    start1 = event['start'].get('dateTime', event['start'].get('date'))
-                    start_event1 += event['description'] + event['summary'] + " | " + start1 + " | "
+                    time_cal1 = event['start'].get('dateTime', event['start'].get('date'))
+                    events_cal1 += event['description'] + event['summary'] + " | " + time_cal1 + " | "
 
 
-            start_event2 = "CAL2: " 
+            events_cal2 = "CAL2: " 
             for event in events:
-                print(event)
-                start2 = event['start'].get('dateTime', event['start'].get('date'))
-                start_event2 +=  event['summary'] + " | " + start2 + " | "
+                time_cal2 = event['start'].get('dateTime', event['start'].get('date'))
+                events_cal2 +=  event['summary'] + " | " + time_cal2 + " | "
 
         if not events:
             print('No upcoming events found.')
             return
 
-        return start_event1 + start_event2
+        return events_cal1 + events_cal2
 
     except HttpError as error:
         print('An error occurred: %s' % error)
-
 
 if __name__ == "__main__":
 
