@@ -132,7 +132,7 @@ def main():
 
 
 
-        return start_event
+        return start_event1 + start_event2
 
     except HttpError as error:
         print('An error occurred: %s' % error)
