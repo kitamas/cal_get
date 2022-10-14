@@ -84,6 +84,8 @@ def main():
 
         #https://django.fun/en/qa/75644/
         #calendar_ids = ['61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com','r0evkror5p88vkhf3q842jk8fg@group.calendar.google.com']
+
+        calendar_ids = []
         print('Getting the upcoming 10 events')
 
         while True:
@@ -94,6 +96,7 @@ def main():
             page_token = calendar_list.get('nextPageToken')
             if not page_token:
                 break
+        print("CALENDAR IDS = ",calendar_ids)
 
         start_date = datetime.datetime(2022, 10, 14, 0, 0, 0, 0).isoformat() + 'Z'
         end_date = datetime.datetime(2022, 10, 29, 23, 59, 59, 0).isoformat() + 'Z'
