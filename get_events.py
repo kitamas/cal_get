@@ -118,7 +118,8 @@ def main():
                 start_event1 = "" 
                 for event in events:
                     start1 = event['start'].get('dateTime', event['start'].get('date'))
-                    start_event1 += start_event1 + " | " + event['summary'] + " | " + start1
+                    #start_event1 += start_event1 + " | " + event['summary'] + " | " + start1
+                    start_event1 += event['summary'] + " | " + start1 + " | "
                     print("START EVENT 111 = ",start_event1)
 
             start_event2 = "" 
