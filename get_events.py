@@ -97,7 +97,7 @@ def main():
 
         for calendar_id in calendar_ids:
             count = 0
-            print("calendar_ids = ",calendar_ids)
+            print("CALENDAR IDS calendar_ids = ",calendar_ids)
             events_result = service.events().list(
                 calendarId=calendar_id,
                 timeMin=start_date,
@@ -105,7 +105,6 @@ def main():
                 singleEvents=True,
                 orderBy='startTime').execute()
             events = events_result.get('items', [])
-            print("EVENTS = ",events )
         if not events:
             print('No upcoming events found.')
             return
