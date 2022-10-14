@@ -131,7 +131,7 @@ def main():
             print("FOR EVENT IN EVENTS = ",start, event['summary'])
             start_event += start_event + " | " + event['summary'] + " | " + start
             #start_event += event['summary'] + " "  + start + " | "
- """
+"""
 
         return start_event
 
