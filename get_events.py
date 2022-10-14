@@ -59,7 +59,7 @@ def authentication():
 @app.route('/webhook', methods=['GET','POST'])
 def webhook():
     req = request.get_json(force=True)
-    print(req)
+    #print(req)
     #text = "webhook flask text response"
     text = main()
 
@@ -105,7 +105,6 @@ def main():
 
         for calendar_id in calendar_ids:
             count = 0
-            print("CALENDAR IDS 222 = ",calendar_ids)
             print("CALENDAR ID = ",calendar_id)
             events_result = service.events().list(
                 calendarId=calendar_id,
@@ -120,7 +119,7 @@ def main():
             for event in events:
                 start = event['start'].get('dateTime', event['start'].get('date'))
             start_event1 += event['summary'] + " "  + start + " | "
-            print("FOR EVENT start_event1 = ",start_event1)
+            print("FOR EVENT 1111 = ",start_event1)
 
         if not events:
             print('No upcoming events found.')
@@ -130,7 +129,7 @@ def main():
         start_event = "" 
         for event in events:
             start = event['start'].get('dateTime', event['start'].get('date'))
-            print("FOR EVENT ",start, event['summary'])
+            print("FOR EVENT 2222",start, event['summary'])
             #start_event += start_event + " | " + event['summary'] + " | " + start
             start_event += event['summary'] + " "  + start + " | "
             #return event['summary']
