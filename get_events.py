@@ -87,19 +87,17 @@ def main():
             for calendar_list_entry in calendar_list['items']:
                 if '@group.calendar.google.com' in calendar_list_entry['id']:
                     calendar_ids.append(calendar_list_entry['id'])
-                    print("FOR FOR",calendar_list_entry['id'])
             page_token = calendar_list.get('nextPageToken')
             if not page_token:
                 break
 
 
-        start_date = datetime.datetime(2022, 10, 12, 0, 0, 0, 0).isoformat() + 'Z'
-        end_date = datetime.datetime(2022, 12, 1, 23, 59, 59, 0).isoformat() + 'Z'
+        start_date = datetime.datetime(2022, 10, 14, 0, 0, 0, 0).isoformat() + 'Z'
+        end_date = datetime.datetime(2022, 10, 29, 23, 59, 59, 0).isoformat() + 'Z'
 
         for calendar_id in calendar_ids:
             count = 0
-            print('\n----%s:\n' % calendar_id)
-            print("FOR 2 FOR 2",calendar_id)
+            print("calendar_ids = ",calendar_ids)
             events_result = service.events().list(
                 calendarId=calendar_id,
                 timeMin=start_date,
@@ -107,6 +105,7 @@ def main():
                 singleEvents=True,
                 orderBy='startTime').execute()
             events = events_result.get('items', [])
+            print("EVENTS = ",events )
         if not events:
             print('No upcoming events found.')
             return
