@@ -83,7 +83,7 @@ def main():
         # https://developers.google.com/calendar/api/v3/reference/calendarList/insert
         calendar_list_entry = {'id': 'r0evkror5p88vkhf3q842jk8fg@group.calendar.google.com'}
         created_calendar_list_entry = service.calendarList().insert(body=calendar_list_entry).execute()
-        print created_calendar_list_entry['summary']
+        print(created_calendar_list_entry['summary'])
 
         #https://django.fun/en/qa/75644/
         #calendar_ids = ['61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com','r0evkror5p88vkhf3q842jk8fg@group.calendar.google.com']
