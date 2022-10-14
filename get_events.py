@@ -106,7 +106,6 @@ def main():
         for calendar_id in calendar_ids:
             count = 0
             print("CALENDAR ID = ",calendar_id)
-            events = []
             events_result = service.events().list(
                 calendarId=calendar_id,
                 timeMin=start_date,
