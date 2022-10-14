@@ -106,6 +106,7 @@ def main():
         for calendar_id in calendar_ids:
             count = 0
             print("CALENDAR ID = ",calendar_id)
+            events = []
             events_result = service.events().list(
                 calendarId=calendar_id,
                 timeMin=start_date,
@@ -113,10 +114,11 @@ def main():
                 singleEvents=True,
                 orderBy='startTime').execute()
             events = events_result.get('items', [])
-            print(" EVENTS = ",events)
         if not events:
             print('No upcoming events found.')
             return
+
+        print(" EVENTS = ",events)
 
         # Prints the start and name of the next 10 events
         start_event = "" 
