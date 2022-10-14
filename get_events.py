@@ -99,7 +99,6 @@ def main():
             page_token = calendar_list.get('nextPageToken')
             if not page_token:
                 break
-        print("CALENDAR IDS 111 = ",calendar_ids)
 
         start_date = datetime.datetime(2022, 10, 14, 0, 0, 0, 0).isoformat() + 'Z'
         end_date = datetime.datetime(2022, 10, 29, 23, 59, 59, 0).isoformat() + 'Z'
@@ -107,6 +106,7 @@ def main():
         for calendar_id in calendar_ids:
             count = 0
             print("CALENDAR IDS 222 = ",calendar_ids)
+            print("CALENDAR ID = ",calendar_id)
             events_result = service.events().list(
                 calendarId=calendar_id,
                 timeMin=start_date,
@@ -122,7 +122,7 @@ def main():
         start_event = "" 
         for event in events:
             start = event['start'].get('dateTime', event['start'].get('date'))
-            #print(start, event['summary'])
+            print(start, event['summary'])
             #start_event += start_event + " | " + event['summary'] + " | " + start
             start_event += event['summary'] + " "  + start + " | "
             #return event['summary']
