@@ -115,18 +115,16 @@ def main():
             if calendar_id == '61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com':
                 events_cal1 = "CAL1: " 
                 for event in events:
-                    time_cal1 = event['start'].get('dateTime', event['start'].get('date'))
-                    time_cal111 = datetime.datetime.strptime(time_cal1,'%Y-%m-%dT%H:%M:%S+02:00')
-                    print("TIMECAL 111", time_cal111)
-                    #CAL1: szabad | 2022-10-15T10:00:00+02:00 | CAL2: appointment 2 | 2022-10-15T10:00:00Z |
-
+                    time_cal1_ISO = event['start'].get('dateTime', event['start'].get('date'))
+                    # 2022-10-15T10:00:00+02:00
+                    time_cal1 = datetime.datetime.strptime(time_cal1_ISO,'%Y-%m-%dT%H:%M:%S+02:00')
                     events_cal1 += event['summary'] + " | " + time_cal1 + " | "
 
             events_cal2 = "CAL2: " 
             for event in events:
-                time_cal2 = event['start'].get('dateTime', event['start'].get('date'))
-                time_cal22 = datetime.datetime.strptime(time_cal2,'%Y-%m-%dT%H:%M:%S%z')
-                print("TIMECAL 22", time_cal22)
+                time_cal2_Z = event['start'].get('dateTime', event['start'].get('date'))
+                # 2022-10-15T10:00:00Z
+                time_cal2 = datetime.datetime.strptime(time_cal2_Z,'%Y-%m-%dT%H:%M:%S%z')
                 events_cal2 +=  event['summary'] + " | " + time_cal2 + " | "
 
         if not events:
