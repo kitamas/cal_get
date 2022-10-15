@@ -119,12 +119,12 @@ def main():
                     # 2022-10-15T10:00:00+02:00
                     time_cal1_obj = datetime.datetime.fromisoformat(time_cal1_ISO)
 
-                    date = time_cal1_obj.strftime("%Y %m %d")
+                    date = time_cal1_obj.strftime("%Y-%m-%d")
                     time = time_cal1_obj.strftime("%H:%M")
 
                     weekday = time_cal1_obj.weekday()
 
-                    events_cal1 += event['summary'] + " | " + date + time + " | "
+                    events_cal1 += event['summary'] + " | " + date + " " + time + " | "
 
             events_cal2 = "CAL2: " 
             for event in events:
