@@ -120,18 +120,17 @@ def main():
                     time_cal1_obj = datetime.datetime.fromisoformat(time_cal1_ISO)
 
                     date = time_cal1_obj.strftime("%Y %m %d")
-                    weekday = time_cal1_obj.weekday()
                     time = time_cal1_obj.strftime("%H:%M")
-                    print("AAAAAAAAAA",date,weekday, time)
 
-                    #time_cal1 = datetime.datetime.strptime(time_cal1_ISO,'%Y-%m-%dT%H:%M:%S+02:00')
-                    events_cal1 += event['summary'] + " | " + time_cal1_ISO + " | "
+                    weekday = time_cal1_obj.weekday()
+
+                    events_cal1 += event['summary'] + " | " + date + time + " | "
 
             events_cal2 = "CAL2: " 
             for event in events:
                 time_cal2_Z = event['start'].get('dateTime', event['start'].get('date'))
                 # 2022-10-15T10:00:00Z
-                print("22222",datetime.fromisoformat(time_cal2_Z))
+                print("22222",datetime.datetime.fromisoformat(time_cal2_Z))
                 #time_cal2 = datetime.datetime.strptime(time_cal2_Z,'%Y-%m-%dT%H:%M:%S%z')
                 events_cal2 +=  event['summary'] + " | " + time_cal2_Z + " | "
 
