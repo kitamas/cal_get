@@ -116,7 +116,7 @@ def main():
                 events_cal1 = "CAL1: " 
                 for event in events:
                     time_cal1 = event['start'].get('dateTime', event['start'].get('date'))
-                    time_cal11 = strptime(time_cal1, '%Y-%m-%dT%H:%M')
+                    time_cal11 = datetime.datetime.strptime(time_cal1, '%Y-%m-%dT%H:%M')
                     events_cal1 += event['summary'] + " | " + time_cal11 + " | "
 
             events_cal2 = "CAL2: " 
