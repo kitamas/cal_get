@@ -60,7 +60,7 @@ def authentication():
 def webhook():
     req = request.get_json(force=True)
     #print(req)
-    #text = "webhook flask text response"
+
     text = main()
 
     res = {
@@ -79,14 +79,13 @@ def main():
         page_token = None
 
         # https://developers.google.com/calendar/api/v3/reference/calendarList/list
-        # If you want to list the calendars that have been shared with a service account (via CalendarList: list), you should first insert the corresponding calendars individually via CalendarList: insert.
+        # If you want to list the calendars that have been shared with a service account, you should first insert the corresponding calendars individually via CalendarList: insert.
         # https://developers.google.com/calendar/api/v3/reference/calendarList/insert
         # calendar_list_entry = {'id': 'r0evkror5p88vkhf3q842jk8fg@group.calendar.google.com'}
         # created_calendar_list_entry = service.calendarList().insert(body=calendar_list_entry).execute()
-        #calendar_ids = ['61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com','r0evkror5p88vkhf3q842jk8fg@group.calendar.google.com']
+        # calendar_ids = ['61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com','r0evkror5p88vkhf3q842jk8fg@group.calendar.google.com']
 
         calendar_ids = []
-        print('Getting the upcoming 10 events')
 
         while True:
             calendar_list = service.calendarList().list(pageToken=page_token).execute()
@@ -97,7 +96,7 @@ def main():
             if not page_token:
                 break
 
-        #start_date = datetime.datetime(2022, 10, 14, 0, 0, 0, 0).isoformat() + 'Z'
+        # start_date = datetime.datetime(2022, 10, 14, 0, 0, 0, 0).isoformat() + 'Z'
         end_date = datetime.datetime(2022, 12, 31, 23, 59, 59, 0).isoformat() + 'Z'
 
         for calendar_id in calendar_ids:
@@ -117,8 +116,8 @@ def main():
                 events_cal1 = "CAL1: " 
                 for event in events:
                     time_cal1 = event['start'].get('dateTime', event['start'].get('date'))
-                    events_cal1 += event['summary'] + " | " + time_cal1 + " | "
-
+                    time_cal11 = strptime(time_cal1, '%Y-%m-%dT%H:%M')
+                    events_cal1 += event['summary'] + " | " + time_cal11 + " | "
 
             events_cal2 = "CAL2: " 
             for event in events:
