@@ -116,18 +116,17 @@ def main():
                 events_cal1 = "CAL1: " 
                 for event in events:
                     time_cal1 = event['start'].get('dateTime', event['start'].get('date'))
-                    time_cal11 = datetime.datetime.strptime(time_cal1,'%Y-%m-%dT%H:%M:%S%z')
-
                     time_cal111 = datetime.datetime.strptime(time_cal1,'%Y-%m-%dT%H:%M:%S+02:00')
-                    print("TIMECAL 11", time_cal11)
                     print("TIMECAL 111", time_cal111)
-#CAL1: szabad | 2022-10-15T10:00:00+02:00 | foglalt | 2022-10-15T15:00:00+02:00 | CAL2: appointment 2 | 2022-10-15T10:00:00Z |
+                    #CAL1: szabad | 2022-10-15T10:00:00+02:00 | CAL2: appointment 2 | 2022-10-15T10:00:00Z |
 
                     events_cal1 += event['summary'] + " | " + time_cal1 + " | "
 
             events_cal2 = "CAL2: " 
             for event in events:
                 time_cal2 = event['start'].get('dateTime', event['start'].get('date'))
+                time_cal22 = datetime.datetime.strptime(time_cal2,'%Y-%m-%dT%H:%M:%S%z')
+                print("TIMECAL 22", time_cal22)
                 events_cal2 +=  event['summary'] + " | " + time_cal2 + " | "
 
         if not events:
