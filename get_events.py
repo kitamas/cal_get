@@ -118,7 +118,7 @@ def main():
                     time_cal1_ISO = event['start'].get('dateTime', event['start'].get('date'))
                     # 2022-10-15T10:00:00+02:00
                     time_cal1 = datetime.datetime.strptime(time_cal1_ISO,'%Y-%m-%dT%H:%M:%S+02:00')
-                    events_cal1 += event['summary'] + " | " + time_cal1 + " | "
+                    events_cal1 += event['summary'] + " | " + time_cal1_ISO + " | "
 
             events_cal2 = "CAL2: " 
             for event in events:
