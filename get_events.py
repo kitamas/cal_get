@@ -117,10 +117,16 @@ def main():
                 for event in events:
                     time_cal1_ISO = event['start'].get('dateTime', event['start'].get('date'))
                     # 2022-10-15T10:00:00+02:00
-                    d1 = datetime.datetime.fromisoformat(time_cal1_ISO)
-                    print("ddd 1111111",d1)
-                    print("TIME",d1.time())
-                    time_cal1 = datetime.datetime.strptime(time_cal1_ISO,'%Y-%m-%dT%H:%M:%S+02:00')
+                    time_cal1_obj = datetime.datetime.fromisoformat(time_cal1_ISO)
+
+                    print("TIME",time_cal1_obj.time())
+                    day = time_cal1_obj.strftime("%d")
+                    print("day:", day)
+
+                    time = time_cal1_obj.strftime("%H:%M")
+                    print("time:", time)
+
+                    #time_cal1 = datetime.datetime.strptime(time_cal1_ISO,'%Y-%m-%dT%H:%M:%S+02:00')
                     events_cal1 += event['summary'] + " | " + time_cal1_ISO + " | "
 
             events_cal2 = "CAL2: " 
