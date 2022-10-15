@@ -124,8 +124,8 @@ def main():
             for event in events:
                 time_cal2_Z = event['start'].get('dateTime', event['start'].get('date'))
                 # 2022-10-15T10:00:00Z
-                time_cal2 = datetime.datetime.strptime(time_cal2_Z,'%Y-%m-%dT%H:%M:%S%z')
-                events_cal2 +=  event['summary'] + " | " + time_cal2 + " | "
+                #time_cal2 = datetime.datetime.strptime(time_cal2_Z,'%Y-%m-%dT%H:%M:%S%z')
+                events_cal2 +=  event['summary'] + " | " + time_cal2_Z + " | "
 
         if not events:
             print('No upcoming events found.')
