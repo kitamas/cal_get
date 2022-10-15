@@ -119,12 +119,10 @@ def main():
                     # 2022-10-15T10:00:00+02:00
                     time_cal1_obj = datetime.datetime.fromisoformat(time_cal1_ISO)
 
-                    print("TIME",time_cal1_obj.time())
-                    day = time_cal1_obj.strftime("%d")
-                    print("day:", day)
-
+                    date = time_cal1_obj.strftime("%Y %m %d")
+                    weekday = time_cal1_obj.weekday()
                     time = time_cal1_obj.strftime("%H:%M")
-                    print("time:", time)
+                    print("AAAAAAAAAA",date,weekday, time)
 
                     #time_cal1 = datetime.datetime.strptime(time_cal1_ISO,'%Y-%m-%dT%H:%M:%S+02:00')
                     events_cal1 += event['summary'] + " | " + time_cal1_ISO + " | "
