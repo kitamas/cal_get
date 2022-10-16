@@ -137,6 +137,12 @@ def main():
             print('No upcoming events found.')
             return
 
+        startTime = now
+        endTime = end_date
+        duration = timedelta(hours = 1)
+        f = findFirstOpenSlot(events,startTime,endTime,duration)
+        print("FFFFFFFFFFFFF",f)
+
         return events_cal1 + events_cal2
 
     except HttpError as error:
@@ -167,6 +173,7 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
 
     #If no suitable gaps are found, return none.
     return None
+
 
 
 if __name__ == "__main__":
