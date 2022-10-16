@@ -137,7 +137,7 @@ def main():
             print('No upcoming events found.')
             return
 
-        startTime = datetime.datetime.utcnow()
+        startTime = datetime.datetime.utcnow() + datetime.timedelta(hours = 2)
         endTime = datetime.datetime(2022, 12, 31, 23, 59, 59, 0)
         duration = datetime.timedelta(hours = 1)
 
