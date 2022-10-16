@@ -142,6 +142,33 @@ def main():
     except HttpError as error:
         print('An error occurred: %s' % error)
 
+
+
+def findFirstOpenSlot(events,startTime,endTime,duration):
+
+    def parseDate(rawDate):
+        #Transform the datetime given by the API to a python datetime object.
+        return datetime.datetime.strptime(rawDate[:-6]+ rawDate[-6:].replace(":",""), '%Y-%m-%dT%H:%M:%S%z')
+
+    eventStarts = [parseDate(e['start'].get('dateTime', e['start'].get('date'))) for e in events]
+    eventEnds = [parseDate(e['end'].get('dateTime', e['end'].get('date'))) for e in events]
+
+    gaps = [start-end for (start,end) in zip(eventStarts[1:], eventEnds[:-1])]
+    
+    if startTime + duration < eventStarts[0]:
+        #A slot is open at the start of the desired window.
+        return startTime
+
+    for i, gap in enumerate(gaps):
+        if gap > duration:
+            #This means that a gap is bigger than the desired slot duration, and we can "squeeze" a meeting.
+            #Just after that meeting ends.
+            return eventEnds[i]
+
+    #If no suitable gaps are found, return none.
+    return None
+
+
 if __name__ == "__main__":
 
     app.run()
