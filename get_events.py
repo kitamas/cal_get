@@ -137,8 +137,8 @@ def main():
             print('No upcoming events found.')
             return
 
-        startTime = now
-        endTime = end_date
+        startTime = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
+        endTime = datetime.datetime(2022, 12, 31, 23, 59, 59, 0).isoformat() + 'Z'
         duration = datetime.timedelta(hours = 1)
         print("AAAAAA",startTime,type(startTime),endTime,type(startTime),duration,type(duration))
         f = findFirstOpenSlot(events,startTime,endTime,duration)
