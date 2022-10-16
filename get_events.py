@@ -140,6 +140,7 @@ def main():
         startTime = now
         endTime = end_date
         duration = datetime.timedelta(hours = 1)
+        print("AAAAAA",startTime,type(startTime),endTime,type(startTime),duration,type(duration))
         f = findFirstOpenSlot(events,startTime,endTime,duration)
         print("FFFFFFFFFFFFF",f)
 
