@@ -116,7 +116,6 @@ def main():
                 events_cal1 = "CAL1: " 
                 for event in events:
                     time_cal1_ISO = event['start'].get('dateTime', event['start'].get('date'))
-                    print(" FOR EVENT",event)
                     # 2022-10-15T10:00:00+02:00
                     time_cal1_obj = datetime.datetime.fromisoformat(time_cal1_ISO)
 
@@ -141,7 +140,7 @@ def main():
         startTime = datetime.datetime.utcnow()
         endTime = datetime.datetime(2022, 12, 31, 23, 59, 59, 0)
         duration = datetime.timedelta(hours = 1)
-        print("TYPE TYPE TYPE ",startTime,type(startTime),endTime,type(startTime),duration,type(duration))
+
         f = findFirstOpenSlot(events,startTime,endTime,duration)
         print("F = FIND FIRST OPEN",f)
 
@@ -157,13 +156,19 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
     def parseDate(rawDate):
         #Transform the datetime given by the API to a python datetime object.
         #return datetime.datetime.strptime(rawDate[:-6]+ rawDate[-6:].replace(":",""), '%Y-%m-%dT%H:%M:%S%z')
-        return datetime.datetime.strptime(rawDate[:-6]+ rawDate[-6:].replace(":",""), '%Y-%m-%dT%H:%M:%S+02:00')
-    #eventStarts = [parseDate(e['start'].get('dateTime', e['start'].get('date'))) for e in events]
-    #eventEnds = [parseDate(e['end'].get('dateTime', e['end'].get('date'))) for e in events]
+        #return datetime.datetime.strptime(rawDate[:-6]+ rawDate[-6:].replace(":",""), '%Y-%m-%dT%H:%M:%S+02:00')
+        #return datetime.datetime.strptime(rawDate, '%Y-%m-%dT%H:%M:%S%z')
+        valami = datetime.datetime.strptime(rawDate, '%Y-%m-%dT%H:%M:%S+02:00')
+        print("VALAMI",valami)
+        return datetime.datetime.strptime(rawDate, '%Y-%m-%dT%H:%M:%S+02:00')
 
-    eventStarts = [e['start'].get('dateTime', e['start'].get('date')) for e in events]
-    eventEnds = [e['end'].get('dateTime', e['end'].get('date')) for e in events]
-    print("EVENSTRATS",eventStarts,type(eventStarts))
+    eventStarts = [parseDate(e['start'].get('dateTime', e['start'].get('date'))) for e in events]
+    eventEnds = [parseDate(e['end'].get('dateTime', e['end'].get('date'))) for e in events]
+
+    #eventStarts = [e['start'].get('dateTime', e['start'].get('date')) for e in events]
+    #['2022-10-17T09:00:00Z'] <class 'list'>
+    #eventEnds = [e['end'].get('dateTime', e['end'].get('date')) for e in events]
+
     gaps = [start-end for (start,end) in zip(eventStarts[1:], eventEnds[:-1])]
     
     if startTime + duration < eventStarts[0]:
