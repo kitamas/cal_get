@@ -116,6 +116,7 @@ def main():
                 events_cal1 = "CAL1: " 
                 for event in events:
                     time_cal1_ISO = event['start'].get('dateTime', event['start'].get('date'))
+                    print(" FOR EVENT",event)
                     # 2022-10-15T10:00:00+02:00
                     time_cal1_obj = datetime.datetime.fromisoformat(time_cal1_ISO)
 
@@ -140,9 +141,9 @@ def main():
         startTime = datetime.datetime.utcnow()
         endTime = datetime.datetime(2022, 12, 31, 23, 59, 59, 0)
         duration = datetime.timedelta(hours = 1)
-        print("AAAAAA",startTime,type(startTime),endTime,type(startTime),duration,type(duration))
+        print("TYPE TYPE TYPE ",startTime,type(startTime),endTime,type(startTime),duration,type(duration))
         f = findFirstOpenSlot(events,startTime,endTime,duration)
-        print("FFFFFFFFFFFFF",f)
+        print("F = FIND FIRST OPEN",f)
 
         return events_cal1 + events_cal2
 
@@ -162,7 +163,7 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
 
     eventStarts = [e['start'].get('dateTime', e['start'].get('date')) for e in events]
     eventEnds = [e['end'].get('dateTime', e['end'].get('date')) for e in events]
-
+    print("EVENSTRATS",eventStarts,type(eventStarts))
     gaps = [start-end for (start,end) in zip(eventStarts[1:], eventEnds[:-1])]
     
     if startTime + duration < eventStarts[0]:
