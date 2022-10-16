@@ -139,7 +139,7 @@ def main():
 
         startTime = now
         endTime = end_date
-        duration = timedelta(hours = 1)
+        duration = datetime.timedelta(hours = 1)
         f = findFirstOpenSlot(events,startTime,endTime,duration)
         print("FFFFFFFFFFFFF",f)
 
