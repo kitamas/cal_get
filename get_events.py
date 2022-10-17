@@ -147,7 +147,7 @@ def main():
 
         f_obj = findFirstOpenSlot(events,startTime,endTime,duration)
         f_time = f_obj.strftime("%Y-%m-%d %B %A")
-        print("FIRST OPEN = ",f_time)
+        print("ffffffffffffFIRST OPEN = ",f_time)
 
         return events_cal1 + events_cal2 + f_time
 
