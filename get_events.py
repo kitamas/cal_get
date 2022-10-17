@@ -137,11 +137,14 @@ def main():
             print('No upcoming events found.')
             return
 
-        print("NOW = ", now, "END DATE = ",end_date)
-        startTime = datetime.datetime.utcnow() + datetime.timedelta(hours = 2)
-        endTime = datetime.datetime(2022, 12, 31, 23, 59, 59, 0)
+        # NOW =  2022-10-17T06:20:26.706507Z END DATE =  2022-12-31T23:59:59Z
+        # START TIME =  2022-10-17 08:20:27.944570 END TIME =  2022-12-31 23:59:59
 
-        print("START TIME = ", startTime, "END TIME = ",endTime)
+        # startTime = datetime.datetime.utcnow() + datetime.timedelta(hours = 2)
+        # endTime = datetime.datetime(2022, 12, 31, 23, 59, 59, 0)
+
+        startTime = now
+        endTime = end_date
 
         duration = datetime.timedelta(hours = 1)
 
@@ -158,14 +161,14 @@ def main():
 def findFirstOpenSlot(events,startTime,endTime,duration):
 
     def parseDate(rawDate):
-        print("RAWDATE = ",rawDate)
+        # RAWDATE =  2022-10-17T09:00:00Z
         #Transform the datetime given by the API to a python datetime object.
         #return datetime.datetime.strptime(rawDate[:-6]+ rawDate[-6:].replace(":",""), '%Y-%m-%dT%H:%M:%S%z')
         #return datetime.datetime.strptime(rawDate[:-6]+ rawDate[-6:].replace(":",""), '%Y-%m-%dT%H:%M:%S+02:00')
         #return datetime.datetime.strptime(rawDate, '%Y-%m-%dT%H:%M:%S+02:00')
 
         valami = datetime.datetime.strptime(rawDate,'%Y-%m-%dT%H:%M:%S%z')
-        print("VALAMI",valami)
+        # VALAMI 2022-10-17 09:00:00+00:00
 
         return datetime.datetime.strptime(rawDate, '%Y-%m-%dT%H:%M:%SZ')
 
