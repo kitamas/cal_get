@@ -163,14 +163,14 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
         # RAWDATE =  2022-10-17T09:00:00Z
         #Transform the datetime given by the API to a python datetime object.
         #return datetime.datetime.strptime(rawDate[:-6]+ rawDate[-6:].replace(":",""), '%Y-%m-%dT%H:%M:%S%z')
-        #return datetime.datetime.strptime(rawDate[:-6]+ rawDate[-6:].replace(":",""), '%Y-%m-%dT%H:%M:%S+02:00')
-        #return datetime.datetime.strptime(rawDate, '%Y-%m-%dT%H:%M:%S+02:00')
 
-        valami = datetime.datetime.strptime(rawDate,'%Y-%m-%dT%H:%M:%S%z')
-        # VALAMI 2022-10-17 09:00:00+00:00
-        print("VALAMI = ",valami)
-        valami1 = datetime.datetime.strptime(rawDate[:-6],'%Y-%m-%dT%H:%M:%S%z')
-        print("VALAMI1 = ",valami1)
+        parse1 = datetime.datetime.strptime(rawDate,'%Y-%m-%dT%H:%M:%S%z')
+        # PARSE 2022-10-17 09:00:00+00:00
+        print("PARSE1 = ",parse1)
+
+        parse2 = datetime.datetime.strptime(rawDate,'%Y-%m-%dT%H:%M:%SZ')
+        # PARSE 2022-10-17 09:00:00+00:00
+        print("PARSE2 = ",parse2)
 
         return datetime.datetime.strptime(rawDate, '%Y-%m-%dT%H:%M:%SZ')
 
