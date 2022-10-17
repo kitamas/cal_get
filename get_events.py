@@ -146,7 +146,7 @@ def main():
         duration = datetime.timedelta(hours = 1)
 
         f = findFirstOpenSlot(events,startTime,endTime,duration)
-        print("F = FIND FIRST OPEN",f)
+        print("FIRST OPEN = ",f)
 
         return events_cal1 + events_cal2
 
