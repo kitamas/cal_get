@@ -148,7 +148,7 @@ def main():
         f = findFirstOpenSlot(events,startTime,endTime,duration)
         print("FIRST OPEN = ",f)
 
-        return events_cal1 + events_cal2
+        return events_cal1 + events_cal2 + "open:" + f
 
     except HttpError as error:
         print('An error occurred: %s' % error)
