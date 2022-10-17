@@ -172,19 +172,20 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
 
         return datetime.datetime.strptime(rawDate, '%Y-%m-%dT%H:%M:%SZ')
 
-    #eventStarts = [parseDate(e['start'].get('dateTime', e['start'].get('date'))) for e in events]
-    #eventEnds = [parseDate(e['end'].get('dateTime', e['end'].get('date'))) for e in events]
+    eventStarts = [parseDate(e['start'].get('dateTime', e['start'].get('date'))) for e in events]
+    eventEnds = [parseDate(e['end'].get('dateTime', e['end'].get('date'))) for e in events]
 
                 #for event in events:
                     #time_cal1_ISO = event['start'].get('dateTime', event['start'].get('date'))
 
-    eventStarts = [e['start'].get('dateTime', e['start'].get('date')) for e in events]
+    #eventStarts = [e['start'].get('dateTime', e['start'].get('date')) for e in events]
     #['2022-10-17T09:00:00Z'] <class 'list'>
-    eventEnds = [e['end'].get('dateTime', e['end'].get('date')) for e in events]
+    #eventEnds = [e['end'].get('dateTime', e['end'].get('date')) for e in events]
 
     gaps = [start-end for (start,end) in zip(eventStarts[1:], eventEnds[:-1])]
 
     print("start = ",eventStarts,"end =", eventEnds,"gaps = ",gaps)
+    # start =  ['2022-10-17T19:00:00Z'] end = ['2022-10-17T20:00:00Z'] gaps =  []
 
     if startTime + duration < eventStarts[0]:
         # A slot is open at the start of the desired window.
