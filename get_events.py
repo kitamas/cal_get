@@ -165,21 +165,22 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
         #return datetime.datetime.strptime(rawDate[:-6]+ rawDate[-6:].replace(":",""), '%Y-%m-%dT%H:%M:%S%z')
 
         parse1 = datetime.datetime.strptime(rawDate,'%Y-%m-%dT%H:%M:%S%z')
-        # PARSE 2022-10-17 09:00:00+00:00
-        print("PARSE1 = ",parse1)
+        # PARSE1  2022-10-17 19:00:00+00:00
 
         parse2 = datetime.datetime.strptime(rawDate,'%Y-%m-%dT%H:%M:%SZ')
-        # PARSE 2022-10-17 09:00:00+00:00
-        print("PARSE2 = ",parse2)
+        # PARSE2 2022-10-17 19:00:00
 
         return datetime.datetime.strptime(rawDate, '%Y-%m-%dT%H:%M:%SZ')
 
-    eventStarts = [parseDate(e['start'].get('dateTime', e['start'].get('date'))) for e in events]
-    eventEnds = [parseDate(e['end'].get('dateTime', e['end'].get('date'))) for e in events]
+    #eventStarts = [parseDate(e['start'].get('dateTime', e['start'].get('date'))) for e in events]
+    #eventEnds = [parseDate(e['end'].get('dateTime', e['end'].get('date'))) for e in events]
 
-    #eventStarts = [e['start'].get('dateTime', e['start'].get('date')) for e in events]
+                #for event in events:
+                    #time_cal1_ISO = event['start'].get('dateTime', event['start'].get('date'))
+
+    eventStarts = [e['start'].get('dateTime', e['start'].get('date')) for e in events]
     #['2022-10-17T09:00:00Z'] <class 'list'>
-    #eventEnds = [e['end'].get('dateTime', e['end'].get('date')) for e in events]
+    eventEnds = [e['end'].get('dateTime', e['end'].get('date')) for e in events]
 
     gaps = [start-end for (start,end) in zip(eventStarts[1:], eventEnds[:-1])]
 
