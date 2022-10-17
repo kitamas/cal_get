@@ -156,7 +156,7 @@ def main():
         print('An error occurred: %s' % error)
 
 
-
+# https://stackoverflow.com/questions/72205649/find-an-open-slot-in-google-calendar-api-between-time
 def findFirstOpenSlot(events,startTime,endTime,duration):
 
     def parseDate(rawDate):
@@ -168,6 +168,9 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
 
         valami = datetime.datetime.strptime(rawDate,'%Y-%m-%dT%H:%M:%S%z')
         # VALAMI 2022-10-17 09:00:00+00:00
+        print("VALAMI = ",valami)
+        valami1 = datetime.datetime.strptime(rawDate[:-6]+ rawDate[-6:].replace(":",""),'%Y-%m-%dT%H:%M:%S%z')
+        print("VALAMI1 = ",valami1)
 
         return datetime.datetime.strptime(rawDate, '%Y-%m-%dT%H:%M:%SZ')
 
@@ -179,8 +182,11 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
     #eventEnds = [e['end'].get('dateTime', e['end'].get('date')) for e in events]
 
     gaps = [start-end for (start,end) in zip(eventStarts[1:], eventEnds[:-1])]
-    print("eventStarts = ",eventStarts)
-    print("gaps = ",gaps)
+
+    #eventStarts =  [datetime.datetime(2022, 10, 17, 19, 0)]
+
+    #gaps =  []
+
     if startTime + duration < eventStarts[0]:
         #A slot is open at the start of the desired window.
         return startTime
