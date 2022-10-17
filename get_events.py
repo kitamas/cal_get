@@ -169,7 +169,7 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
         valami = datetime.datetime.strptime(rawDate,'%Y-%m-%dT%H:%M:%S%z')
         # VALAMI 2022-10-17 09:00:00+00:00
         print("VALAMI = ",valami)
-        valami1 = datetime.datetime.strptime(rawDate[:-6]+ rawDate[-6:].replace(":",""),'%Y-%m-%dT%H:%M:%S%z')
+        valami1 = datetime.datetime.strptime(rawDate[:-6],'%Y-%m-%dT%H:%M:%S%z')
         print("VALAMI1 = ",valami1)
 
         return datetime.datetime.strptime(rawDate, '%Y-%m-%dT%H:%M:%SZ')
