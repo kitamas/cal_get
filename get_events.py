@@ -146,7 +146,7 @@ def main():
         duration = datetime.timedelta(hours = 1)
 
         f_obj = findFirstOpenSlot(events,startTime,endTime,duration)
-        f_time = f_obj.strftime("%Y-%m-%d %B %A")
+        f_time = f_obj.strftime("%Y-%m-%d %H:%M")
         firsto = "FIRST OPEN: "        
         print(firsto,f_time)
 
