@@ -191,9 +191,8 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
             return eventEnds[i]
 
     #If no suitable gaps are found, return none.
-    return None
-
-
+    #return None
+    return "no suitable gaps"
 
 if __name__ == "__main__":
 
