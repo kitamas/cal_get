@@ -182,6 +182,7 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
     
     if startTime + duration < eventStarts[0]:
         #A slot is open at the start of the desired window.
+        print("startime = ",startTime,type(startTime))
         return startTime
 
     for i, gap in enumerate(gaps):
