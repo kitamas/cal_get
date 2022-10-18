@@ -147,10 +147,8 @@ def main():
 
         f_obj = findFirstOpenSlot(events,startTime,endTime,duration)
         print("fobj",type(f_obj))
-        if f_obj == None:
-            print("NONE NONE")
-        else:
-            f_time = f_obj.strftime("%Y-%m-%d %H:%M")
+
+        f_time = f_obj.strftime("%Y-%m-%d %H:%M")
         firsto = "FIRST OPEN: "        
         print(firsto,f_time)
 
