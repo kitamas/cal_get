@@ -157,10 +157,13 @@ def main():
 
 
 # https://stackoverflow.com/questions/72205649/find-an-open-slot-in-google-calendar-api-between-time
+# https://www.pythonfixing.com/2022/05/fixed-find-open-slot-in-google-calendar.html
+
 def findFirstOpenSlot(events,startTime,endTime,duration):
 
     def parseDate(rawDate):
         # RAWDATE =  2022-10-17T09:00:00Z
+        print("RAWDATE =",rawDate)
         #Transform the datetime given by the API to a python datetime object.
         #return datetime.datetime.strptime(rawDate[:-6]+ rawDate[-6:].replace(":",""), '%Y-%m-%dT%H:%M:%S%z')
 
@@ -169,6 +172,9 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
 
         parse2 = datetime.datetime.strptime(rawDate,'%Y-%m-%dT%H:%M:%SZ')
         # PARSE2 2022-10-17 19:00:00
+
+        parse3 = datetime.datetime.strptime(rawDate[:-6],'%Y-%m-%dT%H:%M:%SZ')
+        # PARSE3 2022-10-17 19:00:00
 
         return datetime.datetime.strptime(rawDate, '%Y-%m-%dT%H:%M:%SZ')
 
