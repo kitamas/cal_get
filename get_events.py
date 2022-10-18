@@ -172,9 +172,9 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
         return datetime.datetime.strptime(rawDate, '%Y-%m-%dT%H:%M:%SZ')
 
     eventStarts = [parseDate(e['start'].get('dateTime', e['start'].get('date'))) for e in events]
-    print("eventStarts = ",eventStarts)
-    eventEnds = [parseDate(e['end'].get('dateTime', e['end'].get('date'))) for e in events]
 
+    eventEnds = [parseDate(e['end'].get('dateTime', e['end'].get('date'))) for e in events]
+    print("eventStarts = ",eventStarts,"event ends",eventEnds)
                 #for event in events:
                     #time_cal1_ISO = event['start'].get('dateTime', event['start'].get('date'))
 
