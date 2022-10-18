@@ -145,10 +145,13 @@ def main():
 
         duration = datetime.timedelta(hours = 1)
 
-        f_obj = findFirstOpenSlot(events,startTime,endTime,duration)
-        print("fobj",type(f_obj))
+        if f_obj == "None":
+            f_time = "NINCS"
+        else:
+            f_obj = findFirstOpenSlot(events,startTime,endTime,duration)
+            f_time = f_obj.strftime("%Y-%m-%d %H:%M")
 
-        f_time = f_obj.strftime("%Y-%m-%d %H:%M")
+
         firsto = "FIRST OPEN: "        
         print(firsto,f_time)
 
@@ -200,7 +203,7 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
             return eventEnds[i]
 
     #If no suitable gaps are found, return none.
-    return None
+    return "None"
 
 if __name__ == "__main__":
 
