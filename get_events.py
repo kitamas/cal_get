@@ -163,7 +163,7 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
 
     def parseDate(rawDate):
         # RAWDATE =  2022-10-17T09:00:00Z
-        print("RAWDATE =",rawDate)
+        #print("RAWDATE =",rawDate)
         #Transform the datetime given by the API to a python datetime object.
         #return datetime.datetime.strptime(rawDate[:-6]+ rawDate[-6:].replace(":",""), '%Y-%m-%dT%H:%M:%S%z')
 
