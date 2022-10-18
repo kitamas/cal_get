@@ -140,8 +140,8 @@ def main():
         # NOW =  2022-10-17T06:20:26.706507Z END DATE =  2022-12-31T23:59:59Z
         # START TIME =  2022-10-17 08:20:27.944570 END TIME =  2022-12-31 23:59:59
 
-        startTime = datetime.datetime.utcnow() + datetime.timedelta(hours = 2)
-        endTime = datetime.datetime(2022, 12, 31, 23, 59, 59, 0)
+        startTime = datetime.datetime.now() + datetime.timedelta(hours = 2)
+        endTime = datetime.datetime(2022, 10, 30, 23, 59, 59, 0)
 
         duration = datetime.timedelta(hours = 1)
 
