@@ -97,7 +97,7 @@ def main():
                 break
 
         # start_date = datetime.datetime(2022, 10, 14, 0, 0, 0, 0).isoformat() + 'Z'
-        end_date = datetime.datetime(2022, 12, 31, 23, 59, 59, 0).isoformat() + 'Z'
+        end_date = datetime.datetime(2022, 10, 30, 23, 59, 59, 0).isoformat() + 'Z'
 
         for calendar_id in calendar_ids:
             events_result = service.events().list(
@@ -173,7 +173,7 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
         parse2 = datetime.datetime.strptime(rawDate,'%Y-%m-%dT%H:%M:%SZ')
         # PARSE2 2022-10-17 19:00:00
 
-        #parse3 = datetime.datetime.strptime(rawDate[:-6],'%Y-%m-%dT%H:%M:%SZ')
+        parse3 = datetime.datetime.strptime(rawDate[:-6],'%Y-%m-%dT%H:%M:%SZ')
         # PARSE3 2022-10-17 19:00:00
 
         return datetime.datetime.strptime(rawDate, '%Y-%m-%dT%H:%M:%SZ')
