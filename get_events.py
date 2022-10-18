@@ -146,7 +146,11 @@ def main():
         duration = datetime.timedelta(hours = 1)
 
         f_obj = findFirstOpenSlot(events,startTime,endTime,duration)
-        f_time = f_obj.strftime("%Y-%m-%d %H:%M")
+        print("fobj",type(f_obj))
+        if f_obj = None:
+            print("NONE NONE")
+        else:
+            f_time = f_obj.strftime("%Y-%m-%d %H:%M")
         firsto = "FIRST OPEN: "        
         print(firsto,f_time)
 
@@ -174,7 +178,7 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
     eventStarts = [parseDate(e['start'].get('dateTime', e['start'].get('date'))) for e in events]
 
     eventEnds = [parseDate(e['end'].get('dateTime', e['end'].get('date'))) for e in events]
-    print("eventStarts = ",eventStarts,"event ends",eventEnds)
+
                 #for event in events:
                     #time_cal1_ISO = event['start'].get('dateTime', event['start'].get('date'))
 
@@ -184,7 +188,7 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
 
     gaps = [start-end for (start,end) in zip(eventStarts[1:], eventEnds[:-1])]
 
-    print("start = ",eventStarts,"end =", eventEnds,"gaps = ",gaps)
+    print("start = eventStarts = ",eventStarts,"end = eventEnds = ", eventEnds,"gaps = ",gaps)
     # start =  ['2022-10-17T19:00:00Z'] end = ['2022-10-17T20:00:00Z'] gaps =  []
 
     if startTime + duration < eventStarts[0]:
@@ -198,8 +202,7 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
             return eventEnds[i]
 
     #If no suitable gaps are found, return none.
-    #return None
-    return "no suitable gaps"
+    return None
 
 if __name__ == "__main__":
 
