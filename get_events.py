@@ -161,18 +161,12 @@ def main():
         print('An error occurred: %s' % error)
 
 
-# https://stackoverflow.com/questions/72205649/find-an-open-slot-in-google-calendar-api-between-time
-# https://www.pythonfixing.com/2022/05/fixed-find-open-slot-in-google-calendar.html
-
 def findFirstOpenSlot(events,startTime,endTime,duration):
 
     def parseDate(rawDate):
         # RAWDATE =  2022-10-17T09:00:00Z
-        #Transform the datetime given by the API to a python datetime object.
-        #return datetime.datetime.strptime(rawDate[:-6]+ rawDate[-6:].replace(":",""), '%Y-%m-%dT%H:%M:%S%z')
-
-        # parse = datetime.datetime.strptime(rawDate,'%Y-%m-%dT%H:%M:%SZ')
-        # PARSE =  2022-10-18 11:00:00 <class 'datetime.datetime'>
+        # Transform the datetime given by the API to a python datetime object.
+        # return datetime.datetime.strptime(rawDate[:-6]+ rawDate[-6:].replace(":",""), '%Y-%m-%dT%H:%M:%S%z')
 
         # return datetime.datetime.strptime(rawDate, '%Y-%m-%dT%H:%M:%SZ')
         return datetime.datetime.strptime(rawDate,'%Y-%m-%dT%H:%M:%S+02:00')
@@ -180,13 +174,6 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
     eventStarts = [parseDate(e['start'].get('dateTime', e['start'].get('date'))) for e in events]
 
     eventEnds = [parseDate(e['end'].get('dateTime', e['end'].get('date'))) for e in events]
-
-                #for event in events:
-                    #time_cal1_ISO = event['start'].get('dateTime', event['start'].get('date'))
-
-    #eventStarts = [e['start'].get('dateTime', e['start'].get('date')) for e in events]
-    #['2022-10-17T09:00:00Z'] <class 'list'>
-    #eventEnds = [e['end'].get('dateTime', e['end'].get('date')) for e in events]
 
     gaps = [start-end for (start,end) in zip(eventStarts[1:], eventEnds[:-1])]
 
@@ -199,9 +186,10 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
 
     for i, gap in enumerate(gaps):
         if gap >= duration:
+        #This means that a gap is bigger or = than the desired slot duration, and we can "squeeze" a meeting. Just after that meeting ends.
         #if gap > duration:
-            #This means that a gap is bigger than the desired slot duration, and we can "squeeze" a meeting.
-            #Just after that meeting ends.
+        #This means that a gap is bigger than the desired slot duration, and we can "squeeze" a meeting.
+
             return eventEnds[i]
 
     #If no suitable gaps are found, return none.
