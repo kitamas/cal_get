@@ -184,7 +184,8 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
     eventStarts = [parseDate(e['start'].get('dateTime', e['start'].get('date'))) for e in events]
 
     eventEnds = [parseDate(e['end'].get('dateTime', e['end'].get('date'))) for e in events]
-
+    print("EVENTENDS =", eventEnds)
+    print("EVENTENDS[0] =", eventEnds[0])
     gaps = [start-end for (start,end) in zip(eventStarts[1:], eventEnds[:-1])]
 
     print("start = eventStarts = ",eventStarts,"end = eventEnds = ", eventEnds,"gaps = ",gaps)
@@ -193,6 +194,7 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
 
     #  start = eventStarts =  [datetime.datetime(2022, 10, 19, 15, 0), datetime.datetime(2022, 10, 19, 17, 0), datetime.datetime(2022, 10, 19, 19, 0)] end = eventEnds =  [datetime.datetime(2022, 10, 19, 16, 0), datetime.datetime(2022, 10, 19, 18, 0), datetime.datetime(2022, 10, 19, 20, 0)] gaps =  [datetime.timedelta(seconds=3600), datetime.timedelta(seconds=3600)]
 
+    # if ROUNDED startTime + duration < eventStarts[0]:
     if startTime + duration < eventStarts[0]:
         # A slot is open at the start of the desired window.
         return startTime
