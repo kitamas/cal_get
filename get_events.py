@@ -97,8 +97,10 @@ def main():
                 break
 
         # start_date = datetime.datetime(2022, 10, 14, 0, 0, 0, 0).isoformat() + 'Z'
-        end_date = datetime.datetime(2022, 10, 30, 23, 59, 59, 0).isoformat() + 'Z'
-
+        end_date = datetime.datetime(2022, 12, 31, 23, 59, 59, 0).isoformat() + 'Z'
+        
+        print("END DATE MAIN = ",end_date)
+        
         for calendar_id in calendar_ids:
             events_result = service.events().list(
                 calendarId=calendar_id,
@@ -152,7 +154,9 @@ def main():
 
         startTime = datetime.datetime.now() + datetime.timedelta(hours = 2)
         print("startTime = = =",startTime)
-        endTime = datetime.datetime(2022, 10, 30, 23, 59, 59, 0)
+        endTime = datetime.datetime(2022, 12, 31, 23, 59, 59, 0)
+
+        print("ENDTIME  = ",endTime)
 
         duration = datetime.timedelta(hours = 1)
 
