@@ -183,7 +183,7 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
         # return datetime.datetime.strptime(rawDate[:-6]+ rawDate[-6:].replace(":",""), '%Y-%m-%dT%H:%M:%S%z')
 
         # return datetime.datetime.strptime(rawDate, '%Y-%m-%dT%H:%M:%SZ')
-        return datetime.datetime.strptime(rawDate,'%Y-%m-%dT%H:%M:%S+02:00')
+        return datetime.datetime.strptime(rawDate,'%Y-%m-%dT%H:%M:%S+01:00')
 
     eventStarts = [parseDate(e['start'].get('dateTime', e['start'].get('date'))) for e in events]
 
