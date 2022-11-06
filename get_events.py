@@ -97,7 +97,7 @@ def main():
                 break
 
         start_date = datetime.datetime(2022, 11, 6, 13, 59, 0, 0).isoformat() + 'Z'
-        end_date = datetime.datetime(2022, 11, 6, 15, 0, 0, 0).isoformat() + 'Z'
+        end_date = datetime.datetime(2022, 11, 6, 15, 1, 0, 0).isoformat() + 'Z'
         
         print("END DATE MAIN = ",end_date)
         
