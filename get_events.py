@@ -96,16 +96,16 @@ def main():
             if not page_token:
                 break
 
-        # start_date = datetime.datetime(2022, 10, 14, 0, 0, 0, 0).isoformat() + 'Z'
-        end_date = datetime.datetime(2022, 12, 31, 23, 59, 59, 0).isoformat() + 'Z'
+        start_date = datetime.datetime(2022, 11, 6, 14, 0, 0, 0).isoformat() + 'Z'
+        end_date = datetime.datetime(2022, 11, 6, 15, 0, 0, 0).isoformat() + 'Z'
         
         print("END DATE MAIN = ",end_date)
         
         for calendar_id in calendar_ids:
             events_result = service.events().list(
                 calendarId=calendar_id,
-                #timeMin=start_date,
-                timeMin=now,
+                timeMin=start_date,
+                #timeMin=now,
                 timeMax=end_date,
                 singleEvents=True,
                 orderBy='startTime').execute()
