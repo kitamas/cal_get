@@ -154,7 +154,7 @@ def main():
         # NOW =  2022-10-17T06:20:26.706507Z END DATE =  2022-12-31T23:59:59Z
         # START TIME =  2022-10-17 08:20:27.944570 END TIME =  2022-12-31 23:59:59
 
-        startTime = datetime.datetime.now() + datetime.timedelta(hours = 2)
+        startTime = datetime.datetime.now() + datetime.timedelta(hours = 1)
         print("startTime = = =",startTime)
         endTime = datetime.datetime(2022, 12, 31, 23, 59, 59, 0)
 
@@ -212,7 +212,7 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
         #This means that a gap is bigger or = than the desired slot duration, and we can "squeeze" a meeting. Just after that meeting ends.
         #if gap > duration:
         #This means that a gap is bigger than the desired slot duration, and we can "squeeze" a meeting.
-
+            print("EVENT ENDS[i] =",eventEnds[i])
             return eventEnds[i]
 
     #If no suitable gaps are found, return none.
