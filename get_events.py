@@ -108,6 +108,7 @@ def main():
                 timeMin=now,
                 timeMax=end_date,
                 singleEvents=True,
+                maxResults=10,
                 orderBy='startTime').execute()
             events = events_result.get('items', [])
 
