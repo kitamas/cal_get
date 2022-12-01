@@ -96,8 +96,8 @@ def main():
             if not page_token:
                 break
 
-        start_date = datetime.datetime(2022, 11, 6, 14, 59, 0, 0).isoformat() + 'Z'
-        end_date = datetime.datetime(2022, 12, 5, 23, 59, 0, 0).isoformat() + 'Z'
+        start_date = datetime.datetime(2022, 11, 30, 0, 59, 0, 0).isoformat() + 'Z'
+        end_date = datetime.datetime(2022, 12, 31, 23, 59, 0, 0).isoformat() + 'Z'
         
         print("END DATE MAIN = ",end_date)
         
